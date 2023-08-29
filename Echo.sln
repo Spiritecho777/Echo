@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.33801.447
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Echo", "Screenmate\Echo.csproj", "{E1E7E38B-0044-4BF2-B986-790E267C6DF0}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_Screenmate", "Setup_Screenmate\Setup_Screenmate.vdproj", "{9FFE3430-7BE1-4CD3-9170-E89EC76E657F}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup Echo", "Setup_Screenmate\Setup_Screenmate.vdproj", "{9FFE3430-7BE1-4CD3-9170-E89EC76E657F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +18,7 @@ Global
 		{E1E7E38B-0044-4BF2-B986-790E267C6DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1E7E38B-0044-4BF2-B986-790E267C6DF0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9FFE3430-7BE1-4CD3-9170-E89EC76E657F}.Debug|Any CPU.ActiveCfg = Debug
+		{9FFE3430-7BE1-4CD3-9170-E89EC76E657F}.Debug|Any CPU.Build.0 = Debug
 		{9FFE3430-7BE1-4CD3-9170-E89EC76E657F}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
