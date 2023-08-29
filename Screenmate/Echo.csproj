@@ -115,6 +115,33 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\App.g.cs" />
+    <Compile Include="obj\Debug\App.g.i.cs" />
+    <Compile Include="obj\Debug\IAWindow.g.cs" />
+    <Compile Include="obj\Debug\IAWindow.g.i.cs" />
+    <Compile Include="obj\Debug\MainWindow.g.cs" />
+    <Compile Include="obj\Debug\MainWindow.g.i.cs" />
+    <Compile Include="obj\Debug\Option.g.cs" />
+    <Compile Include="obj\Debug\Option.g.i.cs" />
+    <Compile Include="obj\Debug\Procedure.g.cs" />
+    <Compile Include="obj\Debug\Procedure.g.i.cs" />
+    <Compile Include="obj\Debug\Setting.g.cs" />
+    <Compile Include="obj\Debug\Setting.g.i.cs" />
+    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="obj\Release\App.g.cs" />
+    <Compile Include="obj\Release\App.g.i.cs" />
+    <Compile Include="obj\Release\Echo_Content.g.i.cs" />
+    <Compile Include="obj\Release\IAWindow.g.cs" />
+    <Compile Include="obj\Release\IAWindow.g.i.cs" />
+    <Compile Include="obj\Release\MainWindow.g.cs" />
+    <Compile Include="obj\Release\MainWindow.g.i.cs" />
+    <Compile Include="obj\Release\Option.g.cs" />
+    <Compile Include="obj\Release\Option.g.i.cs" />
+    <Compile Include="obj\Release\Procedure.g.cs" />
+    <Compile Include="obj\Release\Procedure.g.i.cs" />
+    <Compile Include="obj\Release\Setting.g.cs" />
+    <Compile Include="obj\Release\Setting.g.i.cs" />
     <Compile Include="Option.xaml.cs">
       <DependentUpon>Option.xaml</DependentUpon>
     </Compile>
@@ -137,10 +164,41 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="obj\Debug\Echo.g.resources" />
+    <EmbeddedResource Include="obj\Debug\Screenmate.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\Release\Echo.g.resources" />
+    <EmbeddedResource Include="obj\Release\Screenmate.Properties.Resources.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="bin\Debug\Echo.exe.config" />
+    <None Include="bin\Release\Echo.exe.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\Echo.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\Echo.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\Echo.csproj.GenerateResource.cache" />
+    <None Include="obj\Debug\Echo_MarkupCompile.cache" />
+    <None Include="obj\Debug\Echo_MarkupCompile.lref" />
+    <None Include="obj\Debug\IAWindow.baml" />
+    <None Include="obj\Debug\MainWindow.baml" />
+    <None Include="obj\Debug\Option.baml" />
+    <None Include="obj\Debug\Procedure.baml" />
+    <None Include="obj\Debug\Setting.baml" />
+    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Release\Echo.csproj.AssemblyReference.cache" />
+    <None Include="obj\Release\Echo.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Release\Echo.csproj.GenerateResource.cache" />
+    <None Include="obj\Release\Echo_MarkupCompile.cache" />
+    <None Include="obj\Release\Echo_MarkupCompile.i.cache" />
+    <None Include="obj\Release\Echo_MarkupCompile.i.lref" />
+    <None Include="obj\Release\Echo_MarkupCompile.lref" />
+    <None Include="obj\Release\IAWindow.baml" />
+    <None Include="obj\Release\MainWindow.baml" />
+    <None Include="obj\Release\Option.baml" />
+    <None Include="obj\Release\Procedure.baml" />
+    <None Include="obj\Release\Setting.baml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -173,6 +231,23 @@
   <ItemGroup>
     <Resource Include="image\Animation\renards_walk0.png" />
     <Resource Include="image\Animation\renards_walk1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Echo.exe" />
+    <Content Include="bin\Debug\Echo.pdb" />
+    <Content Include="bin\Release\Echo.exe" />
+    <Content Include="bin\Release\Echo.pdb" />
+    <Resource Include="obj\Debug\Echo.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Echo.exe" />
+    <Content Include="obj\Debug\Echo.pdb" />
+    <Resource Include="obj\Release\Echo.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\Echo.exe" />
+    <Content Include="obj\Release\Echo.pdb" />
+    <Content Include="obj\Release\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Resource Include="bin\Release\Path.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
