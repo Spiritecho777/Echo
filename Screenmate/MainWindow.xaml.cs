@@ -52,14 +52,10 @@ namespace Screenmate
 
         private List<string> commandesVocales = new List<string>
         {
-            "Programmation",
-            "Machine Virtuel",
-            "Procédures",
             "Deplace Toi", "Bouge",
             "Arrête", "Stop",
             "Donne moi la liste des commandes",
             "Lance les applications",
-            "Extinction",
             "Ferme les applications"
         };
         #endregion
@@ -277,16 +273,6 @@ namespace Screenmate
                 string command = e.Result.Text;
                 switch (command)
                 {
-                    case var s when s.Contains("Programmation"):
-                        System.Diagnostics.Process.Start("C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/devenv.exe");
-                        //System.Diagnostics.Process.Start("C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/devenv.exe");
-                        break;
-                    case var s when s.Contains("Machine Virtuel"):
-                        System.Diagnostics.Process.Start("C:/Program Files (x86)/VMware/VMware Workstation/vmware.exe");
-                        break;
-                    case var s when s.Contains("Procédures"):
-                        Procedure.Show();
-                        break;
                     case var s when s.Contains("Deplace Toi") || s.Contains("Bouge"):
                         {
                             Option.allowedMove = true;
@@ -326,9 +312,6 @@ namespace Screenmate
                         break;
                     case var s when s.Contains("Ferme les applications"):
                         Option.EndDay();
-                        break;
-                    case var s when s.Contains("Extinction"):
-                        Environment.Exit(1);
                         break;
                     default:
                         break;

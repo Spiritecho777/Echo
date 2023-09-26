@@ -22,7 +22,8 @@ namespace Screenmate
         private void Del_Click(object sender, RoutedEventArgs e)
         {
             listPath.Items.Remove(listPath.SelectedItem);
-            string Savefile = (path + "/Path.txt");
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string Savefile = System.IO.Path.Combine(appDirectory, "Path.txt");
             StreamWriter sw = new StreamWriter(Savefile);
             for (int i = 0; i < listPath.Items.Count; i++)
             {
@@ -36,7 +37,8 @@ namespace Screenmate
             var replace = Path.Text.Replace(@"\", "/");
             replace = replace.Replace(@"""", "");
             listPath.Items.Add(replace);
-            string Savefile = (path + "/Path.txt");
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string Savefile = System.IO.Path.Combine(appDirectory, "Path.txt");
             StreamWriter sw = new StreamWriter(Savefile);
             for (int i = 0; i < listPath.Items.Count; i++)
             {

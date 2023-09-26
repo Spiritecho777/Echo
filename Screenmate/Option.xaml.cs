@@ -14,14 +14,14 @@ namespace Screenmate
         public bool allowedMove = false;
         Setting Setting = new Setting();
         Procedure Procedure = new Procedure();
-        IAWindow IAWindow = new IAWindow();
 
         public Option()
         {
             InitializeComponent();
             Vocal.Background = Properties.Settings.Default.VocalEnabled ? Brushes.Blue : Brushes.Red;
             Move.Background = allowedMove ? Brushes.Blue : Brushes.Red;
-            string Savefile = (path + "/Path.txt");
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string Savefile = System.IO.Path.Combine(appDirectory, "Path.txt");
             if (File.Exists(Savefile))
             {
                 StreamReader sr = new StreamReader(Savefile);
@@ -94,17 +94,6 @@ namespace Screenmate
         private void Tuto_Click(object sender, RoutedEventArgs e)
         {
             Procedure.Show();
-        }
-
-        private void Dictee_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void IA_Click(object sender, RoutedEventArgs e)
-        {
-            IAWindow.Show();
-            //sk - JDO53cbCoBTsHR1DPE6yT3BlbkFJSEXzJgEoLOsovR62bEN1
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
