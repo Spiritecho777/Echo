@@ -24,7 +24,7 @@
         <Button x:Name="button_Copy4" Content="Button" Margin="56,230,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20"/>
         <Button x:Name="EditCV" Content="Commande Vocal" Margin="56,270,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20"/>
         <Button x:Name="Back" Content="Retour" Margin="56,390,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Back_Click"/>
-        <Button x:Name="ChangeSM" Content="Changer de compagnon" Margin="56,310,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20"/>
+        <Button x:Name="ChangeSM" Content="Changer de compagnon" Margin="56,310,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="ChangeSM_Click"/>
         <Button x:Name="KillApp" Content="Quitter" Margin="56,430,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="KillApp_Click"/>
         <Button x:Name="Settings" Content="Paramètres" Margin="56,350,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Settings_Click"/>
         <Button x:Name="Vocal" Content="V" HorizontalAlignment="Left" Height="25" Margin="100,10,0,0" VerticalAlignment="Top" Width="25" RenderTransformOrigin="1.156,0.26" Click="Vocal_Click"/>

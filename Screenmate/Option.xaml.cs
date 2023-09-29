@@ -14,6 +14,7 @@ namespace Screenmate
         public bool allowedMove = false;
         Setting Setting = new Setting();
         Procedure Procedure = new Procedure();
+        ChangeSM Changesm = new ChangeSM();
 
         public Option()
         {
@@ -94,6 +95,11 @@ namespace Screenmate
         private void Tuto_Click(object sender, RoutedEventArgs e)
         {
             Procedure.Show();
+        }
+
+        private void ChangeSM_Click(object sender, RoutedEventArgs e)
+        {
+            Changesm.Show();
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
