@@ -8,7 +8,8 @@ namespace Screenmate
     public partial class Setting : Window
     {
         public static List varpath;
-        string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+        //string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public Setting()
         {
             InitializeComponent();

@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Screenmate"
         mc:Ignorable="d"
-        Title="Changer de Screenmate" Height="370" Width="400">
+        Title="Changer de Screenmate" Height="390" Width="410">
     <Grid>
-        <ListBox x:Name="SMChoix" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="200"/>
-        <Button x:Name="Add" Content="Ajouter" HorizontalAlignment="Left" Height="31" Margin="10,315,0,0" VerticalAlignment="Top" Width="78"/>
-        <Button x:Name="Del" Content="Supprimer" HorizontalAlignment="Left" Height="31" Margin="132,315,0,0" VerticalAlignment="Top" Width="78"/>
+        <TreeView x:Name="SMFile" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" SelectedItemChanged="ChangeSMPreview"/>
+        <Button x:Name="Add" Content="Ajouter" HorizontalAlignment="Left" FontSize="10" Height="31" Margin="10,315,0,0" VerticalAlignment="Top" Width="58" Click="Add_Click"/>
+        <Button x:Name="Del" Content="Supprimer" HorizontalAlignment="Left" Height="31" FontSize="10" Margin="72,315,0,0" VerticalAlignment="Top" Width="58"/>
+        <Button x:Name="Sel" Content="Selectionner" HorizontalAlignment="Left" Height="31" FontSize="10" Margin="134,315,0,0" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.084,0.485"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="150" Margin="227,10,0,0" VerticalAlignment="Top" Width="150">
             <Image x:Name="PreviewImage" Stretch="UniformToFill"/>
         </Border>

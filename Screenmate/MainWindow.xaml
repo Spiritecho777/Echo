@@ -14,7 +14,7 @@
         MaxHeight="100" MaxWidth="67"
         WindowState="Normal" Icon="image/Animation/renards_Idle0.png" ShowInTaskbar="False">
     <Grid>
-        <Image x:Name="img" Source="image\Animation\renards_Idle0.png" ToolTip="子にチワワたち和Ｅｃｈｏです" >
+        <Image x:Name="img" ToolTip="子にチワワたち和Ｅｃｈｏです" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform x:Name="scale" ScaleX="1"></ScaleTransform>

@@ -32,6 +32,7 @@ namespace Screenmate
 
         Option Option = new Option();
         Procedure Procedure = new Procedure();
+        ChangeSM Change=new ChangeSM();
         Random alea = new Random();
 
         private List<string> animationIdle = new List<string>
@@ -50,6 +51,10 @@ namespace Screenmate
             "image/Animation/renards_walk1.png"
         };
 
+        /*private List<string> animationIdle;
+        private List<string> animationSleep;
+        private List<string> animationMove;
+        */
         private List<string> commandesVocales = new List<string>
         {
             "Deplace Toi", "Bouge",
@@ -64,6 +69,11 @@ namespace Screenmate
         {
             InitializeComponent();
 
+            /*animationIdle = new List<string>()
+            {
+                ChangeSM.selectedSM
+            };*/
+
             Mate.Height = height + 20;
             Mate.Width = width + 20;
             vX = 0;
@@ -73,7 +83,7 @@ namespace Screenmate
 
             #region timer
             timer.Interval = TimeSpan.FromSeconds(0.01);
-            timer.Tick += FoxMove;
+            timer.Tick += MateMove;
 
             autonomyTimer.Interval = TimeSpan.FromSeconds(20);
             autonomyTimer.Tick += AutonomyTimer_Tick;
@@ -81,7 +91,7 @@ namespace Screenmate
             timerToSleep.Interval = TimeSpan.FromSeconds(60);
             timerToSleep.Tick += TimerToSleep_Tick;
 
-            animationTimer.Tick += FoxIdle;
+            animationTimer.Tick += MateIdle;
 
             animationTimer.Start();
             timerToSleep.Start();
@@ -119,28 +129,28 @@ namespace Screenmate
         }
 
         #region Animation
-        private void FoxIdle(object sender, EventArgs e)
+        private void MateIdle(object sender, EventArgs e)
         {
             animationTimer.Interval = TimeSpan.FromSeconds(0.50);
             img.Source = new BitmapImage(new Uri(animationIdle[currentFrameIndex], UriKind.Relative));
             currentFrameIndex = (currentFrameIndex + 1) % animationIdle.Count;
         }
 
-        private void FoxSleep(object sender, EventArgs e)
+        private void MateSleep(object sender, EventArgs e)
         {
             animationTimer.Interval = TimeSpan.FromSeconds(0.75);
             img.Source = new BitmapImage(new Uri(animationSleep[currentFrameIndex], UriKind.Relative));
             currentFrameIndex = (currentFrameIndex + 1) % animationSleep.Count;
         }
 
-        private void FoxMoveA(object sender, EventArgs e)
+        private void MateMoveA(object sender, EventArgs e)
         {
             animationTimer.Interval = TimeSpan.FromSeconds(0.25);
             img.Source = new BitmapImage(new Uri(animationMove[currentFrameIndex], UriKind.Relative));
             currentFrameIndex = (currentFrameIndex + 1) % animationMove.Count;
         }
 
-        private void FoxMove(object sender, EventArgs e)
+        private void MateMove(object sender, EventArgs e)
         {
             timeElapsed += 0.01;
             double smoothFactor = 0.005;
@@ -182,20 +192,20 @@ namespace Screenmate
             timer.Stop();
             autonomyTimer.Stop();
 
-            animationTimer.Tick -= FoxMoveA;
-            animationTimer.Tick -= FoxSleep;
-            animationTimer.Tick -= FoxIdle;
-            animationTimer.Tick += FoxIdle;
+            animationTimer.Tick -= MateMoveA;
+            animationTimer.Tick -= MateSleep;
+            animationTimer.Tick -= MateIdle;
+            animationTimer.Tick += MateIdle;
 
             timerToSleep.Start();
         }
 
         private void TimerToSleep_Tick(object sender, EventArgs e)
         {
-            animationTimer.Tick -= FoxSleep;
-            animationTimer.Tick -= FoxMoveA;
-            animationTimer.Tick -= FoxIdle;
-            animationTimer.Tick += FoxSleep;
+            animationTimer.Tick -= MateSleep;
+            animationTimer.Tick -= MateMoveA;
+            animationTimer.Tick -= MateIdle;
+            animationTimer.Tick += MateSleep;
         }
         #endregion
 
@@ -213,19 +223,19 @@ namespace Screenmate
                 timer.Start();
                 autonomyTimer.Start();
 
-                animationTimer.Tick -= FoxMoveA;
-                animationTimer.Tick -= FoxSleep;
-                animationTimer.Tick -= FoxIdle;
-                animationTimer.Tick += FoxMoveA;
+                animationTimer.Tick -= MateMoveA;
+                animationTimer.Tick -= MateSleep;
+                animationTimer.Tick -= MateIdle;
+                animationTimer.Tick += MateMoveA;
             }
             else
             {
                 timerToSleep.Stop();
 
-                animationTimer.Tick -= FoxMoveA;
-                animationTimer.Tick -= FoxSleep;
-                animationTimer.Tick -= FoxIdle;
-                animationTimer.Tick += FoxIdle;
+                animationTimer.Tick -= MateMoveA;
+                animationTimer.Tick -= MateSleep;
+                animationTimer.Tick -= MateIdle;
+                animationTimer.Tick += MateIdle;
 
                 timerToSleep.Start();
             }
@@ -236,10 +246,10 @@ namespace Screenmate
             base.OnMouseRightButtonDown(e);
             timer.Stop();
 
-            animationTimer.Tick -= FoxMoveA;
-            animationTimer.Tick -= FoxSleep;
-            animationTimer.Tick -= FoxIdle;
-            animationTimer.Tick += FoxIdle;
+            animationTimer.Tick -= MateMoveA;
+            animationTimer.Tick -= MateSleep;
+            animationTimer.Tick -= MateIdle;
+            animationTimer.Tick += MateIdle;
 
             Option.Show();
         }
@@ -277,10 +287,10 @@ namespace Screenmate
                         {
                             Option.allowedMove = true;
 
-                            animationTimer.Tick -= FoxMoveA;
-                            animationTimer.Tick -= FoxSleep;
-                            animationTimer.Tick -= FoxIdle;
-                            animationTimer.Tick += FoxMoveA;
+                            animationTimer.Tick -= MateMoveA;
+                            animationTimer.Tick -= MateSleep;
+                            animationTimer.Tick -= MateIdle;
+                            animationTimer.Tick += MateMoveA;
 
                             timer.Start();
                             autonomyTimer.Start();
@@ -293,10 +303,10 @@ namespace Screenmate
                             timer.Stop();
                             autonomyTimer.Stop();
 
-                            animationTimer.Tick -= FoxMoveA;
-                            animationTimer.Tick -= FoxSleep;
-                            animationTimer.Tick -= FoxIdle;
-                            animationTimer.Tick += FoxIdle;
+                            animationTimer.Tick -= MateMoveA;
+                            animationTimer.Tick -= MateSleep;
+                            animationTimer.Tick -= MateIdle;
+                            animationTimer.Tick += MateIdle;
 
                             Option.MoveChangeColor();
                         }
