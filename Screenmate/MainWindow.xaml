@@ -12,7 +12,7 @@
         Background="#00000000"
         Topmost="True"
         MaxHeight="100" MaxWidth="67"
-        WindowState="Normal" Icon="image/Animation/renards_Idle0.png" ShowInTaskbar="False">
+        WindowState="Normal" Icon="image/Animation/Renard/renards_Idle0.png" ShowInTaskbar="False">
     <Grid>
         <Image x:Name="img" ToolTip="子にチワワたち和Ｅｃｈｏです" >
             <Image.RenderTransform>

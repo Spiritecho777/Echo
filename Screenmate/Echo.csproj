@@ -166,15 +166,18 @@
     <Resource Include="renards.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="image\Animation\renards_Idle0.png" />
-    <Resource Include="image\Animation\renards_Idle1.png" />
-    <Resource Include="image\Animation\renards_sleep0.png" />
-    <Resource Include="image\Animation\renards_sleep1.png" />
+    <Resource Include="image\Animation\Renard\renards_Idle0.png" />
+    <Resource Include="image\Animation\Renard\renards_Idle1.png" />
+    <Resource Include="image\Animation\Renard\renards_sleep0.png" />
+    <Resource Include="image\Animation\Renard\renards_sleep1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="image\Animation\renards_walk0.png" />
-    <Resource Include="image\Animation\renards_walk1.png" />
+    <Resource Include="image\Animation\Renard\renards_walk0.png" />
+    <Resource Include="image\Animation\Renard\renards_walk1.png" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="image\MissedFile.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Path = System.IO.Path;
+using System.Runtime.Remoting.Messaging;
+using System.Web.UI.WebControls;
 
 namespace Screenmate
 {
@@ -24,7 +26,70 @@ namespace Screenmate
         {
             InitializeComponent();
 
-            folderStructure = LoadFolderStructure();
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = Path.Combine(appDirectory, "Sprite.dat");
+
+            //folderStructure = LoadFolderStructure();
+
+            //if (folderStructure ==null || folderStructure.Folders == null)
+                if (!File.Exists(filePath))
+                {
+                // Initialiser folderStructure à une nouvelle instance si elle est null
+                folderStructure = new FolderStructure
+                {
+                    Folders = new Dictionary<string, Dictionary<string, List<string>>>
+                    {
+                        // Ajoutez le dossier par défaut ici
+                        {
+                            "Renard (Défaut)",
+                            new Dictionary<string, List<string>>
+                            {
+                                {
+                                     "AnimationIdle",
+                                        new List<string>
+                                        {
+                                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Idle0.png",
+                                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Idle1.png"
+                                        }
+                                },
+                                {
+                                    "AnimationSleep",
+                                    new List<string>
+                                    {
+                                        "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Sleep0.png",
+                                        "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Sleep1.png"
+                                    }
+                                },
+                                {
+                                    "AnimationWalk",
+                                    new List<string>
+                                    {
+                                        "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Walk0.png",
+                                        "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Walk.png"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
+
+                FileManager fileManager = new FileManager();
+                fileManager.SaveFolderStructure(folderStructure, filePath);
+            }
+            else
+            {
+                // Le fichier existe, chargez la structure de dossier depuis le fichier
+                FileManager fileManager = new FileManager();
+                folderStructure = fileManager.LoadFolderStructure(filePath);
+            }
+
+            /*folderStructure = LoadFolderStructure();
+
+            if (folderStructure == null)
+            {
+                // Initialiser folderStructure à une nouvelle instance si elle est null
+                folderStructure = new FolderStructure();
+            }*/
 
             PopulateTreeView(folderStructure);
 
@@ -48,56 +113,69 @@ namespace Screenmate
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            var NewMate = new FolderStructure
+            if (FolderName.Text != "Nom du compagnon a ajouter" && !string.IsNullOrWhiteSpace(FolderName.Text) && !folderStructure.Folders.ContainsKey(FolderName.Text))
             {
-                Folders = new Dictionary<string, Dictionary<string, List<string>>>
+                // Créez le nouveau compagnon
+                var newCompanion = new Dictionary<string, List<string>>
                 {
                     {
-                        "test",
-                        new Dictionary<string, List<string>>
+                        "AnimationIdle",
+                        new List<string>
                         {
-                            {
-                                "AnimationIdle",
-                                new List<string>
-                                {
-                                    "image/Animation/renards_Idle0.png",
-                                    "image/Animation/renards_Idle1.png"
-                                }
-                            },
-
-                            {
-                                "AnimationSleep",
-                                new List<string>
-                                {
-                                    "image/Animation/renards_Sleep0.png",
-                                    "image/Animation/renards_Sleep1.png"
-                                }
-                            },
-
-                            {
-                                "AnimationWalk",
-                                new List<string>
-                                {
-                                    "image/Animation/renards_Walk0.png",
-                                    "image/Animation/renards_Walk1.png"
-                                }
-                            },
+                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Idle0.png",
+                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Idle1.png"
+                        }
+                    },
+                    {
+                        "AnimationSleep",
+                        new List<string>
+                        {
+                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Sleep0.png",
+                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Sleep1.png"
+                        }
+                    },
+                    {
+                        "AnimationWalk",
+                        new List<string>
+                        {
+                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Walk0.png",
+                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Walk1.png"
                         }
                     }
-                }
-            };
+                };
 
-            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string filePath = System.IO.Path.Combine(appDirectory, "Sprite.dat");
-            
-            FileManager fileManager = new FileManager();
-            fileManager.SaveFolderStructure(NewMate, filePath);
-            FolderStructure folderStructure = LoadFolderStructure();
-            PopulateTreeView(folderStructure);
+                // Chargez la structure de dossier existante
+                folderStructure = LoadFolderStructure();
+
+                // Ajoutez le nouveau compagnon à la structure existante
+                folderStructure.Folders[FolderName.Text] = newCompanion;
+
+                // Ajoutez le chemin d'image à ImagePaths
+                foreach (var image in newCompanion.SelectMany(pair => pair.Value))
+                {
+                    folderStructure.ImagePaths[image] = image;
+                }
+
+                // Mettez à jour le TreeView avec la nouvelle structure de dossier
+                PopulateTreeView(folderStructure);
+
+                // Sauvegardez la nouvelle structure de dossier dans le fichier
+                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string filePath = System.IO.Path.Combine(appDirectory, "Sprite.dat");
+                FileManager fileManager = new FileManager();
+                fileManager.SaveFolderStructure(folderStructure, filePath);
+            }
+            else
+            {
+                FolderName.Text = "";
+                MessageBox.Show("Veuillez donner un Nom au compagnon avant d'ajouter.");
+                PopulateTreeView(folderStructure);
+            }
         }
 
         private void PopulateTreeView(FolderStructure folderStructure)
         {
+            SMFile.Items.Clear();   
             // Vérifiez si la structure de dossier est nulle
             if (folderStructure == null || folderStructure.Folders == null)
             {
@@ -135,24 +213,38 @@ namespace Screenmate
 
         private void ChangeSMPreview(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (SMFile.SelectedItem != null && SMFile.SelectedItem is TreeViewItem selectedItem && selectedItem.Header is string imageName)
+            if (folderStructure != null && folderStructure.ImagePaths != null && SMFile.SelectedItem != null && SMFile.SelectedItem is TreeViewItem selectedItem && selectedItem.Header is string imageName)
             {
-                // Récupérez le chemin complet du fichier image à partir de ImagePaths
-                if (folderStructure.ImagePaths.TryGetValue(imageName, out string imagePath))
+                try
                 {
-                    // Chargez l'image et affichez-la dans PreviewImage
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(imagePath);
-                    bitmap.EndInit();
-                    PreviewImage.Source = bitmap;
+                    // Récupérez le chemin complet du fichier image à partir de ImagePaths
+                    if (folderStructure.ImagePaths.TryGetValue(imageName, out string imagePath))
+                    {
+                        // Chargez l'image et affichez-la dans PreviewImage
+                        BitmapImage bitmap = new BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.UriSource = new Uri(imagePath);
+                        bitmap.EndInit();
+                        PreviewImage.Source = bitmap;
+                    }
+                    else
+                    {
+                        BitmapImage bitmaperr = new BitmapImage();
+                        bitmaperr.BeginInit();
+                        bitmaperr.UriSource = new Uri("image/MissedFile.png", UriKind.Relative);
+                        bitmaperr.EndInit();
+                        PreviewImage.Source = bitmaperr;
+                    }
                 }
-                else
+                catch
                 {
-                    // L'image n'existe pas dans ImagePaths, vous pouvez gérer cela ici (par exemple, afficher un message d'erreur dans PreviewImage)
+                    BitmapImage bitmaperr = new BitmapImage();
+                    bitmaperr.BeginInit();
+                    bitmaperr.UriSource = new Uri("image/MissedFile.png", UriKind.Relative); 
+                    bitmaperr.EndInit();
+                    PreviewImage.Source = bitmaperr;
                 }
             }
         }
-
     }
 }

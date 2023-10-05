@@ -37,18 +37,18 @@ namespace Screenmate
 
         private List<string> animationIdle = new List<string>
         {
-            "image/Animation/renards_Idle0.png",
-            "image/Animation/renards_Idle1.png"
+            "image/Animation/Renard/renards_Idle0.png",
+            "image/Animation/Renard/renards_Idle1.png"
         };
         private List<string> animationSleep = new List<string>
         {
-            "image/Animation/renards_sleep0.png",
-            "image/Animation/renards_sleep1.png"
+            "image/Animation/Renard/renards_sleep0.png",
+            "image/Animation/Renard/renards_sleep1.png"
         };
         private List<string> animationMove = new List<string>
         {
-            "image/Animation/renards_walk0.png",
-            "image/Animation/renards_walk1.png"
+            "image/Animation/Renard/renards_walk0.png",
+            "image/Animation/Renard/renards_walk1.png"
         };
 
         /*private List<string> animationIdle;
