@@ -29,11 +29,8 @@ namespace Screenmate
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string filePath = Path.Combine(appDirectory, "Sprite.dat");
 
-            //folderStructure = LoadFolderStructure();
-
-            //if (folderStructure ==null || folderStructure.Folders == null)
-                if (!File.Exists(filePath))
-                {
+            if (!File.Exists(filePath))
+            {
                 // Initialiser folderStructure à une nouvelle instance si elle est null
                 folderStructure = new FolderStructure
                 {
@@ -45,30 +42,57 @@ namespace Screenmate
                             new Dictionary<string, List<string>>
                             {
                                 {
-                                     "AnimationIdle",
-                                        new List<string>
-                                        {
-                                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Idle0.png",
-                                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Idle1.png"
-                                        }
+                                    "AnimationIdle",
+                                    new List<string>
+                                    {
+                                        Path.Combine(appDirectory, "Default\\renards_Idle0.png"),
+                                        Path.Combine(appDirectory, "Default\\renards_Idle1.png")
+                                    }
                                 },
                                 {
                                     "AnimationSleep",
                                     new List<string>
                                     {
-                                        "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Sleep0.png",
-                                        "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Sleep1.png"
+                                        Path.Combine(appDirectory, "Default\\renards_Sleep0.png"),
+                                        Path.Combine(appDirectory, "Default\\renards_Sleep1.png")
                                     }
                                 },
                                 {
                                     "AnimationWalk",
                                     new List<string>
                                     {
-                                        "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Walk0.png",
-                                        "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Walk.png"
+                                        Path.Combine(appDirectory, "Default\\renards_Walk0.png"),
+                                        Path.Combine(appDirectory, "Default\\renards_Walk1.png")
                                     }
                                 }
                             }
+                        }
+                    },
+                    ImagePaths = new Dictionary<string, string>
+                    {
+                        {
+                            Path.Combine(appDirectory, "Default\\renards_Idle0.png"),
+                            Path.Combine(appDirectory, "Default\\renards_Idle0.png")
+                        },
+                        {
+                            Path.Combine(appDirectory, "Default\\renards_Idle1.png"),
+                            Path.Combine(appDirectory, "Default\\renards_Idle1.png")
+                        },
+                        {
+                            Path.Combine(appDirectory, "Default\\renards_Sleep0.png"),
+                            Path.Combine(appDirectory, "Default\\renards_Sleep0.png")
+                        },
+                        {
+                            Path.Combine(appDirectory, "Default\\renards_Sleep1.png"),
+                            Path.Combine(appDirectory, "Default\\renards_Sleep1.png")
+                        },
+                        {
+                            Path.Combine(appDirectory, "Default\\renards_Walk0.png"),
+                            Path.Combine(appDirectory, "Default\\renards_Walk0.png")
+                        },
+                        {
+                            Path.Combine(appDirectory, "Default\\renards_Walk1.png"),
+                            Path.Combine(appDirectory, "Default\\renards_Walk1.png")
                         }
                     }
                 };
@@ -83,16 +107,7 @@ namespace Screenmate
                 folderStructure = fileManager.LoadFolderStructure(filePath);
             }
 
-            /*folderStructure = LoadFolderStructure();
-
-            if (folderStructure == null)
-            {
-                // Initialiser folderStructure à une nouvelle instance si elle est null
-                folderStructure = new FolderStructure();
-            }*/
-
             PopulateTreeView(folderStructure);
-
         }
 
         private FolderStructure LoadFolderStructure()
@@ -122,26 +137,24 @@ namespace Screenmate
                         "AnimationIdle",
                         new List<string>
                         {
-                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Idle0.png",
-                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Idle1.png"
+
                         }
                     },
                     {
                         "AnimationSleep",
                         new List<string>
                         {
-                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Sleep0.png",
-                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Sleep1.png"
+
                         }
                     },
                     {
                         "AnimationWalk",
                         new List<string>
                         {
-                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Walk0.png",
-                            "C:\\Users\\Asumi\\Desktop\\Projet Stusoft\\Visual_Studio\\Spiritecho777\\Echo\\Screenmate\\image\\Animation\\Renard\\renards_Walk1.png"
+                            
                         }
                     }
+
                 };
 
                 // Chargez la structure de dossier existante
@@ -153,6 +166,7 @@ namespace Screenmate
                 // Ajoutez le chemin d'image à ImagePaths
                 foreach (var image in newCompanion.SelectMany(pair => pair.Value))
                 {
+                    //MessageBox.Show(image.ToString());
                     folderStructure.ImagePaths[image] = image;
                 }
 
@@ -244,6 +258,10 @@ namespace Screenmate
                     bitmaperr.EndInit();
                     PreviewImage.Source = bitmaperr;
                 }
+            }
+            else
+            {
+
             }
         }
     }
