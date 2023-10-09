@@ -1,0 +1,22 @@
+﻿<Window x:Class="Screenmate.AddSpritesDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Screenmate"
+        mc:Ignorable="d"
+        Title="AddSpritesDialog" Height="400" Width="380">
+    <Grid>
+        <Label Content="Mouvement" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="LBMove" HorizontalAlignment="Left" Height="80" Margin="10,25,0,0" VerticalAlignment="Top" Width="280"/>
+        <Button x:Name="AddMove" Content="Ajouter" HorizontalAlignment="Left" Height="26" Margin="307,47,0,0" VerticalAlignment="Top" Width="50" Click="AddMoveClick"/>
+        <Label Content="Attente" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="LBIdle" HorizontalAlignment="Left" Height="80" Margin="10,135,0,0" VerticalAlignment="Top" Width="280"/>
+        <Button x:Name="AddIdle" Content="Ajouter" HorizontalAlignment="Left" Height="26" Margin="307,157,0,0" VerticalAlignment="Top" Width="50" Click="AddIdleClick"/>
+        <Label Content="Pause" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="LBSleep" HorizontalAlignment="Left" Height="80" Margin="10,245,0,0" VerticalAlignment="Top" Width="280"/>
+        <Button x:Name="AddSleep" Content="Ajouter" HorizontalAlignment="Left" Height="26" Margin="307,267,0,0" VerticalAlignment="Top" Width="50" Click="AddSleepClick"/>
+        <Button x:Name="End" Content="Confirmer" HorizontalAlignment="Left" Height="22" Margin="10,338,0,0" VerticalAlignment="Top" Width="280" Click="ConfirmClick"/>
+
+    </Grid>
+</Window>

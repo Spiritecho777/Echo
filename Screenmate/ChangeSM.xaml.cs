@@ -130,60 +130,73 @@ namespace Screenmate
         {
             if (FolderName.Text != "Nom du compagnon a ajouter" && !string.IsNullOrWhiteSpace(FolderName.Text) && !folderStructure.Folders.ContainsKey(FolderName.Text))
             {
-                // Créez le nouveau compagnon
-                var newCompanion = new Dictionary<string, List<string>>
+                AddSpritesDialog dialog = new AddSpritesDialog();
+                if (dialog.ShowDialog() == true)
                 {
+                    // Créez le nouveau compagnon
+                    var newCompanion = new Dictionary<string, List<string>>
                     {
-                        "AnimationIdle",
-                        new List<string>
                         {
+                            "AnimationIdle",
+                            new List<string>(dialog.LBIdle.Items.OfType<string>())
+                        },
+                        {
+                            "AnimationSleep",
+                            new List<string>(dialog.LBSleep.Items.OfType<string>())
+                        },
+                        {
+                            "AnimationWalk",
+                            new List<string>(dialog.LBMove.Items.OfType<string>())
+                        }
 
-                        }
-                    },
-                    {
-                        "AnimationSleep",
-                        new List<string>
-                        {
+                    };
 
-                        }
-                    },
+                    // Chargez la structure de dossier existante
+                    folderStructure = LoadFolderStructure();
+
+                    // Ajoutez le nouveau compagnon à la structure existante
+                    folderStructure.Folders[FolderName.Text] = newCompanion;
+
+                    // Ajoutez le chemin d'image à ImagePaths
+                    foreach (var image in newCompanion.SelectMany(pair => pair.Value))
                     {
-                        "AnimationWalk",
-                        new List<string>
-                        {
-                            
-                        }
+                        //MessageBox.Show(image.ToString());
+                        folderStructure.ImagePaths[image] = image;
                     }
 
-                };
+                    // Mettez à jour le TreeView avec la nouvelle structure de dossier
+                    PopulateTreeView(folderStructure);
 
-                // Chargez la structure de dossier existante
-                folderStructure = LoadFolderStructure();
-
-                // Ajoutez le nouveau compagnon à la structure existante
-                folderStructure.Folders[FolderName.Text] = newCompanion;
-
-                // Ajoutez le chemin d'image à ImagePaths
-                foreach (var image in newCompanion.SelectMany(pair => pair.Value))
-                {
-                    //MessageBox.Show(image.ToString());
-                    folderStructure.ImagePaths[image] = image;
+                    // Sauvegardez la nouvelle structure de dossier dans le fichier
+                    string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    string filePath = System.IO.Path.Combine(appDirectory, "Sprite.dat");
+                    FileManager fileManager = new FileManager();
+                    fileManager.SaveFolderStructure(folderStructure, filePath);
                 }
-
-                // Mettez à jour le TreeView avec la nouvelle structure de dossier
-                PopulateTreeView(folderStructure);
-
-                // Sauvegardez la nouvelle structure de dossier dans le fichier
-                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string filePath = System.IO.Path.Combine(appDirectory, "Sprite.dat");
-                FileManager fileManager = new FileManager();
-                fileManager.SaveFolderStructure(folderStructure, filePath);
             }
             else
             {
                 FolderName.Text = "";
                 MessageBox.Show("Veuillez donner un Nom au compagnon avant d'ajouter.");
                 PopulateTreeView(folderStructure);
+            }
+        }
+
+        private void Del_Click(object sender, EventArgs e)
+        {
+            if (SMFile.SelectedItem != null && SMFile.SelectedItem is TreeViewItem selectedItem)
+            {
+                string folderName = selectedItem.Header.ToString();
+                if (folderName != "Renard (Défaut)")
+                {
+                    SMFile.Items.Remove(SMFile.SelectedItem);
+                    folderStructure.Folders.Remove(folderName);
+
+                    string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    string filePath = System.IO.Path.Combine(appDirectory, "Sprite.dat");
+                    FileManager fileManager = new FileManager();
+                    fileManager.SaveFolderStructure(folderStructure, filePath);
+                }
             }
         }
 
