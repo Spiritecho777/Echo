@@ -14,7 +14,7 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="150" Margin="227,10,0,0" VerticalAlignment="Top" Width="150">
             <Image x:Name="PreviewImage" Stretch="UniformToFill"/>
         </Border>
-        <Button x:Name="Back" Content="Retour" HorizontalAlignment="Left" Height="29" Margin="319,317,0,0" VerticalAlignment="Top" Width="71"/>
+        <Button x:Name="Back" Content="Retour" HorizontalAlignment="Left" Height="29" Margin="319,317,0,0" VerticalAlignment="Top" Width="71" Click="BackClick"/>
         <Button x:Name="Accept" Content="Valider" HorizontalAlignment="Left" Height="29" Margin="243,317,0,0" VerticalAlignment="Top" Width="71"/>
         <TextBox x:Name="FolderName" HorizontalAlignment="Left" Height="29" Margin="10,317,0,0" TextWrapping="Wrap" Text="Nom du compagnon a ajouter" Padding="5" TextAlignment="Center" VerticalAlignment="Top" Width="200"/>
     </Grid>

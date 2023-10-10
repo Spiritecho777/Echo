@@ -109,6 +109,7 @@ namespace Screenmate
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
+            Changesm.Hide();
             Setting.Hide();
             Procedure.Hide();
             this.Hide();

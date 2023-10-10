@@ -5,6 +5,7 @@ using System.Windows.Media.Imaging;
 using System.Speech.Recognition;
 using System.Collections.Generic;
 using System.Windows.Media;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Screenmate
 {
@@ -34,6 +35,7 @@ namespace Screenmate
         Procedure Procedure = new Procedure();
         ChangeSM Change=new ChangeSM();
         Random alea = new Random();
+        ChangeSM ChangeSM= new ChangeSM();
 
         private List<string> animationIdle = new List<string>
         {
@@ -53,8 +55,8 @@ namespace Screenmate
 
         /*private List<string> animationIdle;
         private List<string> animationSleep;
-        private List<string> animationMove;
-        */
+        private List<string> animationMove;*/
+        
         private List<string> commandesVocales = new List<string>
         {
             "Deplace Toi", "Bouge",
@@ -69,10 +71,11 @@ namespace Screenmate
         {
             InitializeComponent();
 
-            /*animationIdle = new List<string>()
-            {
-                ChangeSM.selectedSM
-            };*/
+            animationIdle = new List<string> (ChangeSM.animIdle);           
+            animationSleep = new List<string>(ChangeSM.animSleep);
+            animationMove = new List<string>(ChangeSM.animMove);
+
+            //MessageBox.Show("animIdle: " + string.Join(", ", animationIdle));
 
             Mate.Height = height + 20;
             Mate.Width = width + 20;
@@ -134,6 +137,7 @@ namespace Screenmate
             animationTimer.Interval = TimeSpan.FromSeconds(0.50);
             img.Source = new BitmapImage(new Uri(animationIdle[currentFrameIndex], UriKind.Relative));
             currentFrameIndex = (currentFrameIndex + 1) % animationIdle.Count;
+           // MessageBox.Show("animIdle: " + string.Join(", ", img.Source));
         }
 
         private void MateSleep(object sender, EventArgs e)

@@ -22,6 +22,11 @@ namespace Screenmate
     public partial class ChangeSM : Window
     {
         private FolderStructure folderStructure;
+
+        public List<string> animIdle = new List<string>();
+        public List<string> animSleep = new List<string>();
+        public List<string> animMove = new List<string>();
+
         public ChangeSM()
         {
             InitializeComponent();
@@ -107,6 +112,8 @@ namespace Screenmate
                 folderStructure = fileManager.LoadFolderStructure(filePath);
             }
 
+            LoadSelectedCompanionAnimations("Renard (Défaut)");
+
             PopulateTreeView(folderStructure);
         }
 
@@ -123,6 +130,32 @@ namespace Screenmate
             else
             {
                 return new FolderStructure();
+            }
+        }
+
+        private void LoadSelectedCompanionAnimations(string selectedFolderName)
+        {
+            // Vérifiez si le dossier sélectionné existe dans la structure de dossier
+            if (folderStructure.Folders.ContainsKey(selectedFolderName))
+            {
+                // Récupérez les listes d'animations correspondantes au dossier sélectionné
+                var selectedFolder = folderStructure.Folders[selectedFolderName];
+
+                // Vérifiez si les listes existent et sont non vides
+                 if (selectedFolder.ContainsKey("AnimationIdle") && selectedFolder["AnimationIdle"].Count > 0)
+                 {
+                     animIdle = selectedFolder["AnimationIdle"];
+                 }
+
+                 if (selectedFolder.ContainsKey("AnimationSleep") && selectedFolder["AnimationSleep"].Count > 0)
+                 {
+                     animSleep = selectedFolder["AnimationSleep"];
+                 }
+
+                 if (selectedFolder.ContainsKey("AnimationWalk") && selectedFolder["AnimationWalk"].Count > 0)
+                 {
+                     animMove = selectedFolder["AnimationWalk"];
+                 }
             }
         }
 
@@ -276,6 +309,11 @@ namespace Screenmate
             {
 
             }
+        }
+
+        private void BackClick(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
         }
     }
 }
