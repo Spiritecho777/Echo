@@ -112,7 +112,7 @@ namespace Screenmate
                 folderStructure = fileManager.LoadFolderStructure(filePath);
             }
 
-            LoadSelectedCompanionAnimations("Renard (Défaut)");
+            LoadSelectedCompanionAnimations(Properties.Settings.Default.SpriteSource);
 
             PopulateTreeView(folderStructure);
         }
@@ -156,6 +156,28 @@ namespace Screenmate
                  {
                      animMove = selectedFolder["AnimationWalk"];
                  }
+            }
+            else
+            {
+                var selectedFolder = folderStructure.Folders["Renard (Défaut)"];
+                Properties.Settings.Default.SpriteSource = "Renard (Défaut)";
+                Properties.Settings.Default.Save();
+
+                // Vérifiez si les listes existent et sont non vides
+                if (selectedFolder.ContainsKey("AnimationIdle") && selectedFolder["AnimationIdle"].Count > 0)
+                {
+                    animIdle = selectedFolder["AnimationIdle"];
+                }
+
+                if (selectedFolder.ContainsKey("AnimationSleep") && selectedFolder["AnimationSleep"].Count > 0)
+                {
+                    animSleep = selectedFolder["AnimationSleep"];
+                }
+
+                if (selectedFolder.ContainsKey("AnimationWalk") && selectedFolder["AnimationWalk"].Count > 0)
+                {
+                    animMove = selectedFolder["AnimationWalk"];
+                }
             }
         }
 
@@ -313,7 +335,21 @@ namespace Screenmate
 
         private void BackClick(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
+        }
+
+        private void Sel_Click(object sender, RoutedEventArgs e)
+        {
+            if (SMFile.SelectedItem != null && SMFile.SelectedItem is TreeViewItem selectedItem)
+            {
+                string folderName = selectedItem.Header.ToString();
+                Properties.Settings.Default.SpriteSource = folderName;
+                Properties.Settings.Default.Save();
+                LoadSelectedCompanionAnimations(Properties.Settings.Default.SpriteSource);
+                MainWindow.animationIdle = animIdle;
+                MainWindow.animationMove = animMove;
+                MainWindow.animationSleep = animSleep;
+            }
         }
     }
 }

@@ -99,7 +99,9 @@ namespace Screenmate
 
         private void ChangeSM_Click(object sender, RoutedEventArgs e)
         {
+            ChangeSM Changesm =new ChangeSM();
             Changesm.Show();
+            
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)

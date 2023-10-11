@@ -6,6 +6,8 @@ using System.Speech.Recognition;
 using System.Collections.Generic;
 using System.Windows.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using System.Diagnostics;
+using System.Speech.Synthesis;
 
 namespace Screenmate
 {
@@ -32,30 +34,12 @@ namespace Screenmate
         public static System.Windows.Threading.DispatcherTimer timerToSleep = new System.Windows.Threading.DispatcherTimer();
 
         Option Option = new Option();
-        Procedure Procedure = new Procedure();
-        ChangeSM Change=new ChangeSM();
         Random alea = new Random();
         ChangeSM ChangeSM= new ChangeSM();
 
-        private List<string> animationIdle = new List<string>
-        {
-            "image/Animation/Renard/renards_Idle0.png",
-            "image/Animation/Renard/renards_Idle1.png"
-        };
-        private List<string> animationSleep = new List<string>
-        {
-            "image/Animation/Renard/renards_sleep0.png",
-            "image/Animation/Renard/renards_sleep1.png"
-        };
-        private List<string> animationMove = new List<string>
-        {
-            "image/Animation/Renard/renards_walk0.png",
-            "image/Animation/Renard/renards_walk1.png"
-        };
-
-        /*private List<string> animationIdle;
-        private List<string> animationSleep;
-        private List<string> animationMove;*/
+        public static List<string> animationIdle;
+        public static List<string> animationSleep;
+        public static List<string> animationMove;
         
         private List<string> commandesVocales = new List<string>
         {
@@ -72,10 +56,8 @@ namespace Screenmate
             InitializeComponent();
 
             animationIdle = new List<string> (ChangeSM.animIdle);           
-            animationSleep = new List<string>(ChangeSM.animSleep);
-            animationMove = new List<string>(ChangeSM.animMove);
-
-            //MessageBox.Show("animIdle: " + string.Join(", ", animationIdle));
+            animationSleep = new List<string> (ChangeSM.animSleep);
+            animationMove = new List<string> (ChangeSM.animMove);
 
             Mate.Height = height + 20;
             Mate.Width = width + 20;
@@ -135,22 +117,21 @@ namespace Screenmate
         private void MateIdle(object sender, EventArgs e)
         {
             animationTimer.Interval = TimeSpan.FromSeconds(0.50);
-            img.Source = new BitmapImage(new Uri(animationIdle[currentFrameIndex], UriKind.Relative));
+            img.Source = new BitmapImage(new Uri(animationIdle[currentFrameIndex], UriKind.Absolute));
             currentFrameIndex = (currentFrameIndex + 1) % animationIdle.Count;
-           // MessageBox.Show("animIdle: " + string.Join(", ", img.Source));
         }
 
         private void MateSleep(object sender, EventArgs e)
         {
             animationTimer.Interval = TimeSpan.FromSeconds(0.75);
-            img.Source = new BitmapImage(new Uri(animationSleep[currentFrameIndex], UriKind.Relative));
+            img.Source = new BitmapImage(new Uri(animationSleep[currentFrameIndex], UriKind.Absolute));
             currentFrameIndex = (currentFrameIndex + 1) % animationSleep.Count;
         }
 
         private void MateMoveA(object sender, EventArgs e)
         {
             animationTimer.Interval = TimeSpan.FromSeconds(0.25);
-            img.Source = new BitmapImage(new Uri(animationMove[currentFrameIndex], UriKind.Relative));
+            img.Source = new BitmapImage(new Uri(animationMove[currentFrameIndex], UriKind.Absolute));
             currentFrameIndex = (currentFrameIndex + 1) % animationMove.Count;
         }
 

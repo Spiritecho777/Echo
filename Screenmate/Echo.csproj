@@ -182,9 +182,9 @@
     <Resource Include="image\Animation\Renard\renards_walk0.png" />
     <Resource Include="image\Animation\Renard\renards_walk1.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="image\MissedFile.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
