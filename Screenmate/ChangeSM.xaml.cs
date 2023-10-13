@@ -31,15 +31,21 @@ namespace Screenmate
         {
             InitializeComponent();
 
-            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string appDirectory2 = AppDomain.CurrentDomain.BaseDirectory;
+            string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"EchoData");
             string filePath = Path.Combine(appDirectory, "Sprite.dat");
-
+           
+            if (!Directory.Exists(appDirectory))
+            { 
+                Directory.CreateDirectory(appDirectory);
+            }
+            
             if (!File.Exists(filePath))
-            {
-                // Initialiser folderStructure à une nouvelle instance si elle est null
-                folderStructure = new FolderStructure
                 {
-                    Folders = new Dictionary<string, Dictionary<string, List<string>>>
+                    // Initialiser folderStructure à une nouvelle instance si elle est null
+                    folderStructure = new FolderStructure
+                    {
+                        Folders = new Dictionary<string, Dictionary<string, List<string>>>
                     {
                         // Ajoutez le dossier par défaut ici
                         {
@@ -50,61 +56,61 @@ namespace Screenmate
                                     "AnimationIdle",
                                     new List<string>
                                     {
-                                        Path.Combine(appDirectory, "Default\\renards_Idle0.png"),
-                                        Path.Combine(appDirectory, "Default\\renards_Idle1.png")
+                                        Path.Combine(appDirectory2, "Default\\renards_Idle0.png"),
+                                        Path.Combine(appDirectory2, "Default\\renards_Idle1.png")
                                     }
                                 },
                                 {
                                     "AnimationSleep",
                                     new List<string>
                                     {
-                                        Path.Combine(appDirectory, "Default\\renards_Sleep0.png"),
-                                        Path.Combine(appDirectory, "Default\\renards_Sleep1.png")
+                                        Path.Combine(appDirectory2, "Default\\renards_Sleep0.png"),
+                                        Path.Combine(appDirectory2, "Default\\renards_Sleep1.png")
                                     }
                                 },
                                 {
                                     "AnimationWalk",
                                     new List<string>
                                     {
-                                        Path.Combine(appDirectory, "Default\\renards_Walk0.png"),
-                                        Path.Combine(appDirectory, "Default\\renards_Walk1.png")
+                                        Path.Combine(appDirectory2, "Default\\renards_Walk0.png"),
+                                        Path.Combine(appDirectory2, "Default\\renards_Walk1.png")
                                     }
                                 }
                             }
                         }
                     },
-                    ImagePaths = new Dictionary<string, string>
+                        ImagePaths = new Dictionary<string, string>
                     {
                         {
-                            Path.Combine(appDirectory, "Default\\renards_Idle0.png"),
-                            Path.Combine(appDirectory, "Default\\renards_Idle0.png")
+                            Path.Combine(appDirectory2, "Default\\renards_Idle0.png"),
+                            Path.Combine(appDirectory2, "Default\\renards_Idle0.png")
                         },
                         {
-                            Path.Combine(appDirectory, "Default\\renards_Idle1.png"),
-                            Path.Combine(appDirectory, "Default\\renards_Idle1.png")
+                            Path.Combine(appDirectory2, "Default\\renards_Idle1.png"),
+                            Path.Combine(appDirectory2, "Default\\renards_Idle1.png")
                         },
                         {
-                            Path.Combine(appDirectory, "Default\\renards_Sleep0.png"),
-                            Path.Combine(appDirectory, "Default\\renards_Sleep0.png")
+                            Path.Combine(appDirectory2, "Default\\renards_Sleep0.png"),
+                            Path.Combine(appDirectory2, "Default\\renards_Sleep0.png")
                         },
                         {
-                            Path.Combine(appDirectory, "Default\\renards_Sleep1.png"),
-                            Path.Combine(appDirectory, "Default\\renards_Sleep1.png")
+                            Path.Combine(appDirectory2, "Default\\renards_Sleep1.png"),
+                            Path.Combine(appDirectory2, "Default\\renards_Sleep1.png")
                         },
                         {
-                            Path.Combine(appDirectory, "Default\\renards_Walk0.png"),
-                            Path.Combine(appDirectory, "Default\\renards_Walk0.png")
+                            Path.Combine(appDirectory2, "Default\\renards_Walk0.png"),
+                            Path.Combine(appDirectory2, "Default\\renards_Walk0.png")
                         },
                         {
-                            Path.Combine(appDirectory, "Default\\renards_Walk1.png"),
-                            Path.Combine(appDirectory, "Default\\renards_Walk1.png")
+                            Path.Combine(appDirectory2, "Default\\renards_Walk1.png"),
+                            Path.Combine(appDirectory2, "Default\\renards_Walk1.png")
                         }
                     }
-                };
+                    };
 
-                FileManager fileManager = new FileManager();
-                fileManager.SaveFolderStructure(folderStructure, filePath);
-            }
+                    FileManager fileManager = new FileManager();
+                    fileManager.SaveFolderStructure(folderStructure, filePath);
+                }
             else
             {
                 // Le fichier existe, chargez la structure de dossier depuis le fichier
@@ -119,8 +125,12 @@ namespace Screenmate
 
         private FolderStructure LoadFolderStructure()
         {
-            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string filePath = System.IO.Path.Combine(appDirectory, "Sprite.dat");
+            /*string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = System.IO.Path.Combine(appDirectory, "Sprite.dat");*/
+
+            string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
+            string filePath = Path.Combine(appDirectory, "Sprite.dat");
+
             if (File.Exists(filePath))
             {
                 // Le fichier existe, chargez la structure de dossier depuis le fichier
@@ -223,8 +233,11 @@ namespace Screenmate
                     PopulateTreeView(folderStructure);
 
                     // Sauvegardez la nouvelle structure de dossier dans le fichier
-                    string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                    string filePath = System.IO.Path.Combine(appDirectory, "Sprite.dat");
+                    /*string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    string filePath = System.IO.Path.Combine(appDirectory, "Sprite.dat");*/
+
+                    string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
+                    string filePath = Path.Combine(appDirectory, "Sprite.dat");
                     FileManager fileManager = new FileManager();
                     fileManager.SaveFolderStructure(folderStructure, filePath);
                 }
@@ -247,8 +260,11 @@ namespace Screenmate
                     SMFile.Items.Remove(SMFile.SelectedItem);
                     folderStructure.Folders.Remove(folderName);
 
-                    string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                    string filePath = System.IO.Path.Combine(appDirectory, "Sprite.dat");
+                    /*string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    string filePath = System.IO.Path.Combine(appDirectory, "Sprite.dat");*/
+
+                    string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
+                    string filePath = Path.Combine(appDirectory, "Sprite.dat");
                     FileManager fileManager = new FileManager();
                     fileManager.SaveFolderStructure(folderStructure, filePath);
                 }

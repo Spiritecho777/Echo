@@ -20,8 +20,6 @@ namespace Screenmate
 
         private void AddMoveClick (object sender, RoutedEventArgs e)
         {
-            NumberSpritesM++;
-
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Fichiers image (*.png;*.jpg)|*.png;*.jpg|Tous les fichiers (*.*)|*.*";
             ofd.Multiselect = true;
@@ -31,14 +29,13 @@ namespace Screenmate
                 foreach (string fileName in ofd.FileNames)
                 {
                     LBMove.Items.Add(fileName);
+                    NumberSpritesM++;
                 }
             }
         }
 
         private void AddIdleClick(object sender, RoutedEventArgs e)
-        {
-            NumberSpritesI++;
-
+        {          
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Fichiers image (*.png;*.jpg)|*.png;*.jpg|Tous les fichiers (*.*)|*.*";
             ofd.Multiselect = true;
@@ -48,14 +45,13 @@ namespace Screenmate
                 foreach (string fileName in ofd.FileNames)
                 {
                     LBIdle.Items.Add(fileName);
+                    NumberSpritesI++;
                 }
             }
         }
 
         private void AddSleepClick(object sender, RoutedEventArgs e) 
-        {
-            NumberSpritesS++;
-
+        {            
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Fichiers image (*.png;*.jpg)|*.png;*.jpg|Tous les fichiers (*.*)|*.*";
             ofd.Multiselect = true;
@@ -65,6 +61,7 @@ namespace Screenmate
                 foreach (string fileName in ofd.FileNames)
                 {
                     LBSleep.Items.Add(fileName);
+                    NumberSpritesS++;
                 }
             }
         }
@@ -73,12 +70,18 @@ namespace Screenmate
         {
             if (NumberSpritesM < 1 || NumberSpritesI < 1 || NumberSpritesS < 1) 
             {
-                System.Windows.MessageBox.Show("Veuillez ajouter au moins une image dans chacun des champs");
+                MessageBox.Show("Veuillez ajouter au moins une image dans chacun des champs");
             }
             else
             {
-                DialogResult = true;
-                
+                if (NumberSpritesI!=NumberSpritesM || NumberSpritesI != NumberSpritesS || NumberSpritesM != NumberSpritesS)
+                {
+                    MessageBox.Show("Mettre le même nombre d'image dans chaque dossier");
+                }
+                else
+                {
+                    DialogResult = true;
+                }              
             }
         }
     }
