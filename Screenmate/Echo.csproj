@@ -90,6 +90,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditVoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -104,7 +108,11 @@
     <Compile Include="ChangeSM.xaml.cs">
       <DependentUpon>ChangeSM.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classe\CmdVoc.cs" />
     <Compile Include="Classe\FileManager.cs" />
+    <Compile Include="EditVoc.xaml.cs">
+      <DependentUpon>EditVoc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

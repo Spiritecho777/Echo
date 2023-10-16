@@ -1,0 +1,16 @@
+﻿<Window x:Class="Screenmate.EditVoc"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Screenmate"
+        mc:Ignorable="d"
+        Title="Edition Commande Vocale" Height="450" Width="800" ShowInTaskbar="False" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Action" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Commande Vocale" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="listAction" HorizontalAlignment="Left" Height="360" Margin="10,40,0,0" VerticalAlignment="Top" Width="190" SelectionChanged="SelectedAction"/> 
+        <ListView x:Name="listCommande" HorizontalAlignment="Left" Height="360" Margin="205,40,0,0" VerticalAlignment="Top" Width="190"/>
+
+    </Grid>
+</Window>

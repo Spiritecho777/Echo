@@ -101,8 +101,7 @@ namespace Screenmate
         private void ChangeSM_Click(object sender, RoutedEventArgs e)
         {
             ChangeSM Changesm =new ChangeSM();
-            Changesm.Show();
-            
+            Changesm.Show();        
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
@@ -123,6 +122,11 @@ namespace Screenmate
             Environment.Exit(1);
         }
 
+        private void EditVoc_Click(object sender, RoutedEventArgs e)
+        {
+            EditVoc Editvoc = new EditVoc();
+            Editvoc.Show();
+        }
         #endregion
 
         #region petit bouton

@@ -22,7 +22,7 @@
         <Button x:Name="Dictee" Content="..." Margin="56,150,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20"/>
         <Button x:Name="button_Copy3" Content="Button" Margin="56,190,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20"/>
         <Button x:Name="button_Copy4" Content="Button" Margin="56,230,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20"/>
-        <Button x:Name="EditCV" Content="Commande Vocal" Margin="56,270,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20"/>
+        <Button x:Name="EditCV" Content="Commande Vocal" Margin="56,270,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="EditVoc_Click"/>
         <Button x:Name="Back" Content="Retour" Margin="56,390,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Back_Click"/>
         <Button x:Name="ChangeSM" Content="Changer de compagnon" Margin="56,310,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="ChangeSM_Click"/>
         <Button x:Name="KillApp" Content="Quitter" Margin="56,430,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="KillApp_Click"/>
