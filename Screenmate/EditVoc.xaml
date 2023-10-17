@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Screenmate"
         mc:Ignorable="d"
-        Title="Edition Commande Vocale" Height="450" Width="800" ShowInTaskbar="False" ResizeMode="NoResize">
+        Title="Edition Commande Vocale" Height="470" Width="480" ShowInTaskbar="False" ResizeMode="NoResize">
     <Grid>
         <Label Content="Action" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Commande Vocale" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="listAction" HorizontalAlignment="Left" Height="360" Margin="10,40,0,0" VerticalAlignment="Top" Width="190" SelectionChanged="SelectedAction"/> 
-        <ListView x:Name="listCommande" HorizontalAlignment="Left" Height="360" Margin="205,40,0,0" VerticalAlignment="Top" Width="190"/>
+        <ListBox x:Name="listAction" HorizontalAlignment="Left" Height="320" Margin="10,40,0,0" VerticalAlignment="Top" Width="190" SelectionChanged="SelectedAction"/>
+        <ListView x:Name="listCommande" HorizontalAlignment="Left" Height="320" Margin="205,40,0,0" VerticalAlignment="Top" Width="250"/>
+        <Button x:Name="Add" Content="Ajouter" HorizontalAlignment="Center" Height="26" Margin="15,396,0,0" VerticalAlignment="Top" Width="70" Click="Add_Click"/>
+        <Button x:Name="Back" Content="Retour" HorizontalAlignment="Left" Height="26" Margin="385,396,0,0" VerticalAlignment="Top" Width="70" Click="Back_Click"/>
+        <TextBox x:Name="AddField" HorizontalAlignment="Left" Height="26" Margin="205,365,0,0" Padding="0,3" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
+        <Button x:Name="Del" Content="Supprimer" HorizontalAlignment="Left" Height="26" Margin="295,396,0,0" VerticalAlignment="Top" Width="70" Click="Del_Click"/>
 
     </Grid>
 </Window>

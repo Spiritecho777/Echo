@@ -62,8 +62,6 @@ namespace Screenmate
             }
             else
             {
-                // Le fichier existe, chargez la structure de dossier depuis le fichier
-                //CmdVoc Cmdvoc = new CmdVoc();
                 vocalCommands = CmdVoc.LoadCmdVoc(filePath);
             }
 
@@ -71,9 +69,10 @@ namespace Screenmate
         }
         private void PopulateList(List<CmdVoc> vocalCommands)
         {
+            listAction.Items.Clear();
+
             foreach (var cmdVoc in vocalCommands)
             {
-                // Ajoutez les éléments à la liste d'actions
                 listAction.Items.Add(cmdVoc.Nom);
             }
         }
@@ -85,18 +84,80 @@ namespace Screenmate
 
             int selectedIndex = listAction.SelectedIndex;
 
-            // Vérifiez si un élément est sélectionné
             if (selectedIndex >= 0 && selectedIndex < vocalCommands.Count)
             {
-                // Récupérez les phrases vocales associées à l'action sélectionnée
                 List<string> phrases = vocalCommands[selectedIndex].Phrase;
 
-                // Ajoutez les phrases vocales à la liste des commandes
                 foreach (var phrase in phrases)
                 {
                     listCommande.Items.Add(phrase);
                 }
             }
+        }
+
+        private void Add_Click (object sender, EventArgs e)
+        {
+            CmdVoc Cmdvoc = new CmdVoc();
+            string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
+            string filePath = Path.Combine(appDirectory, "Cmdvoc.dat");
+
+            int selectedIndex = listAction.SelectedIndex;
+
+
+            if (selectedIndex >= 0 && selectedIndex < vocalCommands.Count && !string.IsNullOrWhiteSpace(AddField.Text))
+            {
+                CmdVoc selectedAction = vocalCommands[selectedIndex];
+
+                if (!vocalCommands.Any(cmdVoc => cmdVoc.Phrase.Any(phrase => string.Equals(phrase, AddField.Text, StringComparison.OrdinalIgnoreCase))))
+                {
+                    selectedAction.Phrase.Add(AddField.Text);
+
+                    Cmdvoc.SaveCmdVoc(vocalCommands, filePath);
+
+                    PopulateList(vocalCommands);
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("La commande est déja présente dans une action");
+                }
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez selectionner une action");
+            }
+        }
+
+        private void Del_Click(object sender, EventArgs e)
+        {
+            CmdVoc Cmdvoc = new CmdVoc();
+            string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
+            string filePath = Path.Combine(appDirectory, "Cmdvoc.dat");
+
+            int selectedIndex = listCommande.SelectedIndex;
+
+            if (selectedIndex >= 0)
+            {
+                int selectedActionIndex = listAction.SelectedIndex;
+
+                if (selectedActionIndex >= 0 && selectedActionIndex < vocalCommands.Count)
+                {
+                    CmdVoc selectedAction = vocalCommands[selectedActionIndex];
+
+                    if (selectedIndex < selectedAction.Phrase.Count)
+                    {
+                        selectedAction.Phrase.RemoveAt(selectedIndex);
+
+                        Cmdvoc.SaveCmdVoc(vocalCommands, filePath);
+
+                        PopulateList(vocalCommands);
+                    }
+                }
+            }
+        }
+
+        private void Back_Click (object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
