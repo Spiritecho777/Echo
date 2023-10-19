@@ -15,7 +15,6 @@ namespace Screenmate
         Setting Setting = new Setting();
         Procedure Procedure = new Procedure();
         ChangeSM Changesm = new ChangeSM();
-
         public Option()
         {
             InitializeComponent();

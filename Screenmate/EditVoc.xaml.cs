@@ -69,33 +69,45 @@ namespace Screenmate
         }
         private void PopulateList(List<CmdVoc> vocalCommands)
         {
+            listAction.SelectionChanged -= SelectedAction;
+
+            listAction.SelectedIndex = -1;
+
+            listCommande.Items.Clear();
+
             listAction.Items.Clear();
 
             foreach (var cmdVoc in vocalCommands)
             {
                 listAction.Items.Add(cmdVoc.Nom);
             }
+
+            listAction.SelectionChanged += SelectedAction;
         }
 
         private void SelectedAction(object sender, SelectionChangedEventArgs e)
         {
             listCommande.Items.Clear();
 
-
-            int selectedIndex = listAction.SelectedIndex;
-
-            if (selectedIndex >= 0 && selectedIndex < vocalCommands.Count)
+            string selectedAct=listAction.SelectedItem.ToString();
+            if (selectedAct != null)
             {
-                List<string> phrases = vocalCommands[selectedIndex].Phrase;
+                // Recherchez l'action correspondante dans vocalCommands
+                CmdVoc selectedCommand = vocalCommands.FirstOrDefault(cmd => cmd.Nom == selectedAct);
 
-                foreach (var phrase in phrases)
+                if (selectedCommand != null)
                 {
-                    listCommande.Items.Add(phrase);
+                    List<string> phrases = selectedCommand.Phrase;
+
+                    foreach (var phrase in phrases)
+                    {
+                        listCommande.Items.Add(phrase);
+                    }
                 }
             }
         }
 
-        private void Add_Click (object sender, EventArgs e)
+        private void Add_Click (object sender, RoutedEventArgs e)
         {
             CmdVoc Cmdvoc = new CmdVoc();
             string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
@@ -127,7 +139,7 @@ namespace Screenmate
             }
         }
 
-        private void Del_Click(object sender, EventArgs e)
+        private void Del_Click(object sender, RoutedEventArgs e)
         {
             CmdVoc Cmdvoc = new CmdVoc();
             string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
@@ -155,7 +167,7 @@ namespace Screenmate
             }
         }
 
-        private void Back_Click (object sender, EventArgs e)
+        private void Back_Click (object sender, RoutedEventArgs e)
         {
             this.Close();
         }

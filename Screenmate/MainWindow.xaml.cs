@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -8,6 +9,7 @@ using System.Windows.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.Diagnostics;
 using System.Speech.Synthesis;
+using Screenmate.Classe;
 
 namespace Screenmate
 {
@@ -41,19 +43,30 @@ namespace Screenmate
         public static List<string> animationSleep;
         public static List<string> animationMove;
         
-        private List<string> commandesVocales = new List<string>
+        /*private List<string> commandesVocales = new List<string>
         {
             "Deplace Toi", "Bouge",
             "Arrête", "Stop",
             "Donne moi la liste des commandes",
             "Lance les applications",
             "Ferme les applications"
-        };
+        };*/
+
+        private List<string> commandesVocales = new List<string>();
         #endregion
 
         public MainWindow()
         {
             InitializeComponent();
+
+            string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
+            string filePath = Path.Combine(appDirectory, "Cmdvoc.dat");
+
+            List<CmdVoc> cmdVoc = CmdVoc.LoadCmdVoc(filePath);
+            foreach (CmdVoc cmd in cmdVoc)
+            {
+                commandesVocales.AddRange(cmd.Phrase);
+            }
 
             animationIdle = new List<string> (ChangeSM.animIdle);           
             animationSleep = new List<string> (ChangeSM.animSleep);
@@ -228,6 +241,7 @@ namespace Screenmate
 
         protected override void OnMouseRightButtonDown(MouseButtonEventArgs e)
         {
+            MessageBox.Show(string.Join(Environment.NewLine, commandesVocales));
             base.OnMouseRightButtonDown(e);
             timer.Stop();
 
@@ -260,6 +274,18 @@ namespace Screenmate
             return start + t * (end - start);
         }
         #endregion
+
+        public void Update()
+        {
+            string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
+            string filePath = Path.Combine(appDirectory, "Cmdvoc.dat");
+
+            List<CmdVoc> cmdVoc = CmdVoc.LoadCmdVoc(filePath);
+            foreach (CmdVoc cmd in cmdVoc)
+            {
+                commandesVocales.AddRange(cmd.Phrase);
+            }
+        }
 
         private void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
