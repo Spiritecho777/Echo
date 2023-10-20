@@ -10,6 +10,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.Diagnostics;
 using System.Speech.Synthesis;
 using Screenmate.Classe;
+using System.Linq;
+using System.Windows.Documents;
 
 namespace Screenmate
 {
@@ -42,17 +44,13 @@ namespace Screenmate
         public static List<string> animationIdle;
         public static List<string> animationSleep;
         public static List<string> animationMove;
-        
-        /*private List<string> commandesVocales = new List<string>
-        {
-            "Deplace Toi", "Bouge",
-            "Arrête", "Stop",
-            "Donne moi la liste des commandes",
-            "Lance les applications",
-            "Ferme les applications"
-        };*/
 
         private List<string> commandesVocales = new List<string>();
+
+        List<CmdVoc> cmdVoc = new List<CmdVoc>();
+        List<string> list0 = new List<string>();
+        List<string> list1 = new List<string>();
+        List<string> list2= new List<string>();
         #endregion
 
         public MainWindow()
@@ -62,7 +60,7 @@ namespace Screenmate
             string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
             string filePath = Path.Combine(appDirectory, "Cmdvoc.dat");
 
-            List<CmdVoc> cmdVoc = CmdVoc.LoadCmdVoc(filePath);
+            cmdVoc = CmdVoc.LoadCmdVoc(filePath);
             foreach (CmdVoc cmd in cmdVoc)
             {
                 commandesVocales.AddRange(cmd.Phrase);
@@ -123,6 +121,41 @@ namespace Screenmate
             {
                 MessageBox.Show("Une erreur s'est produite : " + ex.Message);
             }
+
+            #region setup list
+            CmdVoc selectedCommand = cmdVoc.FirstOrDefault(cmd => cmd.Nom == "Déplacement du Compagnon");
+            if (selectedCommand != null)
+            {
+                List<string> phrases = selectedCommand.Phrase;
+
+                foreach (var phrase in phrases)
+                {
+                    list0.Add(phrase);
+                }
+            }
+
+            selectedCommand = cmdVoc.FirstOrDefault(cmd => cmd.Nom == "Arrêt du Compagnon");
+            if (selectedCommand != null)
+            {
+                List<string> phrases = selectedCommand.Phrase;
+
+                foreach (var phrase in phrases)
+                {
+                    list1.Add(phrase);
+                }
+            }
+
+            selectedCommand = cmdVoc.FirstOrDefault(cmd => cmd.Nom == "Liste des commandes");
+            if (selectedCommand != null)
+            {
+                List<string> phrases = selectedCommand.Phrase;
+
+                foreach (var phrase in phrases)
+                {
+                    list2.Add(phrase);
+                }
+            }
+            #endregion
             #endregion
         }
 
@@ -241,7 +274,6 @@ namespace Screenmate
 
         protected override void OnMouseRightButtonDown(MouseButtonEventArgs e)
         {
-            MessageBox.Show(string.Join(Environment.NewLine, commandesVocales));
             base.OnMouseRightButtonDown(e);
             timer.Stop();
 
@@ -292,42 +324,55 @@ namespace Screenmate
             if (Properties.Settings.Default.VocalEnabled)
             {
                 string command = e.Result.Text;
-                switch (command)
+
+                for (int i = 0; i < list0.Count;i++)
                 {
-                    case var s when s.Contains("Deplace Toi") || s.Contains("Bouge"):
-                        {
-                            Option.allowedMove = true;
+                    if (command.Contains(list0[i]))
+                    {
+                        Option.allowedMove = true;
 
-                            animationTimer.Tick -= MateMoveA;
-                            animationTimer.Tick -= MateSleep;
-                            animationTimer.Tick -= MateIdle;
-                            animationTimer.Tick += MateMoveA;
+                        animationTimer.Tick -= MateMoveA;
+                        animationTimer.Tick -= MateSleep;
+                        animationTimer.Tick -= MateIdle;
+                        animationTimer.Tick += MateMoveA;
 
-                            timer.Start();
-                            autonomyTimer.Start();
-                            Option.MoveChangeColor();
-                        }
+                        timer.Start();
+                        autonomyTimer.Start();
+                        Option.MoveChangeColor();
                         break;
-                    case var s when s.Contains("Arrête") || s.Contains("Stop"):
-                        {
-                            Option.allowedMove = false;
-                            timer.Stop();
-                            autonomyTimer.Stop();
+                    }
+                }
 
-                            animationTimer.Tick -= MateMoveA;
-                            animationTimer.Tick -= MateSleep;
-                            animationTimer.Tick -= MateIdle;
-                            animationTimer.Tick += MateIdle;
+                for (int i = 0; i < list1.Count;i++)
+                {
+                    if (command.Contains(list1[i]))
+                    {
+                        Option.allowedMove = false;
+                        timer.Stop();
+                        autonomyTimer.Stop();
 
-                            Option.MoveChangeColor();
-                        }
+                        animationTimer.Tick -= MateMoveA;
+                        animationTimer.Tick -= MateSleep;
+                        animationTimer.Tick -= MateIdle;
+                        animationTimer.Tick += MateIdle;
+
+                        Option.MoveChangeColor();
                         break;
-                    case var s when s.Contains("Donne moi la liste des commandes"):
-                        {
-                            string listeCommandes = string.Join(Environment.NewLine, commandesVocales);
-                            MessageBox.Show("Commandes vocales disponibles : " + Environment.NewLine + listeCommandes);
-                        }
+                    }
+                }
+
+                for (int i = 0; i < list2.Count;i++)
+                {
+                    if (command.Contains(list2[i]))
+                    {
+                        string listeCommandes = string.Join(Environment.NewLine, commandesVocales);
+                        MessageBox.Show("Commandes vocales disponibles : " + Environment.NewLine + listeCommandes);
                         break;
+                    }
+                }
+
+                /*switch (command)
+                {                    
                     case var s when s.Contains("Lance les applications"):
                         Option.StartDay();
                         break;
@@ -336,7 +381,7 @@ namespace Screenmate
                         break;
                     default:
                         break;
-                }
+                }*/
             }
         }
     }
