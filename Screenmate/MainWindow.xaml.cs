@@ -60,10 +60,13 @@ namespace Screenmate
             string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
             string filePath = Path.Combine(appDirectory, "Cmdvoc.dat");
 
-            cmdVoc = CmdVoc.LoadCmdVoc(filePath);
-            foreach (CmdVoc cmd in cmdVoc)
+            if (File.Exists(filePath))
             {
-                commandesVocales.AddRange(cmd.Phrase);
+                cmdVoc = CmdVoc.LoadCmdVoc(filePath);
+                foreach (CmdVoc cmd in cmdVoc)
+                {
+                    commandesVocales.AddRange(cmd.Phrase);
+                }
             }
 
             animationIdle = new List<string> (ChangeSM.animIdle);           
