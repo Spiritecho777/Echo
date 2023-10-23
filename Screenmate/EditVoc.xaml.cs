@@ -169,6 +169,7 @@ namespace Screenmate
 
         private void Back_Click (object sender, RoutedEventArgs e)
         {
+            System.Windows.MessageBox.Show("Afin de mettre à jour la liste de commandes veuillez relancer l'application");
             this.Close();
         }
     }

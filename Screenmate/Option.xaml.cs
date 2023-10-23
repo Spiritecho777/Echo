@@ -113,7 +113,7 @@ namespace Screenmate
             Changesm.Hide();
             Setting.Hide();
             Procedure.Hide();
-            this.Hide();
+            this.Hide();           
         }
 
         private void KillApp_Click(object sender, RoutedEventArgs e)

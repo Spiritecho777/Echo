@@ -40,6 +40,7 @@ namespace Screenmate
         Option Option = new Option();
         Random alea = new Random();
         ChangeSM ChangeSM= new ChangeSM();
+        EditVoc EditVoc= new EditVoc();
 
         public static List<string> animationIdle;
         public static List<string> animationSleep;
@@ -66,7 +67,7 @@ namespace Screenmate
                 foreach (CmdVoc cmd in cmdVoc)
                 {
                     commandesVocales.AddRange(cmd.Phrase);
-                }
+                }               
             }
 
             animationIdle = new List<string> (ChangeSM.animIdle);           
