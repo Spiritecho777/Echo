@@ -58,6 +58,56 @@ namespace Screenmate
                     ActionMethodName = "Get-CmdList"
                 });
 
+                vocalCommands.Add(new CmdVoc
+                {
+                    Nom = "Lancements des logiciels",
+                    Phrase = new List<string> { "" },
+                    ActionMethodName = "Get-CmdList"
+                });
+
+                vocalCommands.Add(new CmdVoc
+                {
+                    Nom = "Fermetures des logiciels",
+                    Phrase = new List<string> { "" },
+                    ActionMethodName = "Get-CmdList"
+                });
+
+                vocalCommands.Add(new CmdVoc
+                {
+                    Nom = "Explorateurs de fichiers",
+                    Phrase = new List<string> { "" },
+                    ActionMethodName = "Get-CmdList"
+                });
+
+                vocalCommands.Add(new CmdVoc
+                {
+                    Nom = "Changement de compagnon",
+                    Phrase = new List<string> { "" },
+                    ActionMethodName = "Get-CmdList"
+                });
+
+                vocalCommands.Add(new CmdVoc
+                {
+                    Nom = "Edition de commandes vocales",
+                    Phrase = new List<string> { "" },
+                    ActionMethodName = "Get-CmdList"
+                });
+
+                vocalCommands.Add(new CmdVoc
+                {
+                    Nom = "Paramétrage des chemins d'accèes",
+                    Phrase = new List<string> { "" },
+                    ActionMethodName = "Get-CmdList"
+                });
+
+                vocalCommands.Add(new CmdVoc
+                {
+                    Nom = "Quitter l'application",
+                    Phrase = new List<string> { "" },
+                    ActionMethodName = "Get-CmdList"
+                });
+
+
                 Cmdvoc.SaveCmdVoc(vocalCommands, filePath);
             }
             else

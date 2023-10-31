@@ -40,7 +40,6 @@ namespace Screenmate
         Option Option = new Option();
         Random alea = new Random();
         ChangeSM ChangeSM= new ChangeSM();
-        EditVoc EditVoc= new EditVoc();
 
         public static List<string> animationIdle;
         public static List<string> animationSleep;
@@ -52,6 +51,13 @@ namespace Screenmate
         List<string> list0 = new List<string>();
         List<string> list1 = new List<string>();
         List<string> list2= new List<string>();
+        List<string> list3 = new List<string>();
+        List<string> list4 = new List<string>();
+        List<string> list5 = new List<string>();
+        List<string> list6 = new List<string>();
+        List<string> list7 = new List<string>();
+        List<string> list8 = new List<string>();
+        List<string> list9 = new List<string>();
         #endregion
 
         public MainWindow()
@@ -121,9 +127,9 @@ namespace Screenmate
                     MessageBox.Show("Impossible de démarrer la reconnaissance vocale : " + ex.Message);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Une erreur s'est produite : " + ex.Message);
+                //MessageBox.Show("Une erreur s'est produite : " + ex.Message);
             }
 
             #region setup list
@@ -131,7 +137,6 @@ namespace Screenmate
             if (selectedCommand != null)
             {
                 List<string> phrases = selectedCommand.Phrase;
-
                 foreach (var phrase in phrases)
                 {
                     list0.Add(phrase);
@@ -142,7 +147,6 @@ namespace Screenmate
             if (selectedCommand != null)
             {
                 List<string> phrases = selectedCommand.Phrase;
-
                 foreach (var phrase in phrases)
                 {
                     list1.Add(phrase);
@@ -153,10 +157,79 @@ namespace Screenmate
             if (selectedCommand != null)
             {
                 List<string> phrases = selectedCommand.Phrase;
-
                 foreach (var phrase in phrases)
                 {
                     list2.Add(phrase);
+                }
+            }
+
+            selectedCommand = cmdVoc.FirstOrDefault(cmd => cmd.Nom == "Lancements des logiciels");
+            if (selectedCommand != null)
+            {
+                List<string> phrases = selectedCommand.Phrase;
+                foreach (var phrase in phrases)
+                {
+                    list3.Add(phrase);
+                }
+            }
+
+            selectedCommand = cmdVoc.FirstOrDefault(cmd => cmd.Nom == "Fermetures des logiciels");
+            if (selectedCommand != null)
+            {
+                List<string> phrases = selectedCommand.Phrase;
+                foreach (var phrase in phrases)
+                {
+                    list4.Add(phrase);
+                }
+            }
+
+            selectedCommand = cmdVoc.FirstOrDefault(cmd => cmd.Nom == "Explorateurs de fichiers");
+            if (selectedCommand != null)
+            {
+                List<string> phrases = selectedCommand.Phrase;
+                foreach (var phrase in phrases)
+                {
+                    list5.Add(phrase);
+                }
+            }
+
+            selectedCommand = cmdVoc.FirstOrDefault(cmd => cmd.Nom == "Changement de compagnon");
+            if (selectedCommand != null)
+            {
+                List<string> phrases = selectedCommand.Phrase;
+                foreach (var phrase in phrases)
+                {
+                    list6.Add(phrase);
+                }
+            }
+
+            selectedCommand = cmdVoc.FirstOrDefault(cmd => cmd.Nom == "Edition de commandes vocales");
+            if (selectedCommand != null)
+            {
+                List<string> phrases = selectedCommand.Phrase;
+                foreach (var phrase in phrases)
+                {
+                    list7.Add(phrase);
+                }
+            }
+
+            selectedCommand = cmdVoc.FirstOrDefault(cmd => cmd.Nom == "Paramétrage des chemins d'accèes");
+            if (selectedCommand != null)
+            {
+                List<string> phrases = selectedCommand.Phrase;
+                foreach (var phrase in phrases)
+                {
+                    list8.Add(phrase);
+                }
+            }
+
+            selectedCommand = cmdVoc.FirstOrDefault(cmd => cmd.Nom == "Quitter l'application");
+            if (selectedCommand != null)
+            {
+                List<string> phrases = selectedCommand.Phrase;
+                foreach (var phrase in phrases)
+                {
+                    list9.Add(phrase);
                 }
             }
             #endregion
@@ -311,18 +384,6 @@ namespace Screenmate
         }
         #endregion
 
-        public void Update()
-        {
-            string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
-            string filePath = Path.Combine(appDirectory, "Cmdvoc.dat");
-
-            List<CmdVoc> cmdVoc = CmdVoc.LoadCmdVoc(filePath);
-            foreach (CmdVoc cmd in cmdVoc)
-            {
-                commandesVocales.AddRange(cmd.Phrase);
-            }
-        }
-
         private void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             if (Properties.Settings.Default.VocalEnabled)
@@ -375,17 +436,68 @@ namespace Screenmate
                     }
                 }
 
-                /*switch (command)
-                {                    
-                    case var s when s.Contains("Lance les applications"):
+                for(int i = 0;i <list3.Count;i++)
+                {
+                    if (command.Contains(list3[i]))
+                    {
                         Option.StartDay();
                         break;
-                    case var s when s.Contains("Ferme les applications"):
+                    }
+                }
+
+                for(int i = 0; i < list4.Count; i++)
+                {
+                    if (command.Contains(list4[i]))
+                    {
                         Option.EndDay();
                         break;
-                    default:
+                    }
+                }
+
+                for(int i =0; i < list5.Count; i++)
+                {
+                    if (command.Contains(list5[i]))
+                    {
+                        Option.Explo();
                         break;
-                }*/
+                    }
+                }
+
+                for(int i = 0; i < list6.Count; i++)
+                {
+                    if (command.Contains(list6[i]))
+                    {
+                        Option.ChangeC();
+                        break;
+                    }
+                }
+
+                for(int i = 0; i <list7.Count ; i++) 
+                {
+                    if (command.Contains(list7[i]))
+                    {
+                        Option.EditCmd();
+                        break;
+                    }
+                }
+
+                for(int i = 0;i<list8.Count ; i++)
+                {
+                    if (command.Contains(list8[i]))
+                    {
+                        Option.param();
+                        break;
+                    }
+                }
+
+                for(int i = 0;i<list9.Count ; i++)
+                {
+                    if (command.Contains(list9[i]))
+                    {
+                        Option.Fermeture();
+                        break;
+                    }
+                }
             }
         }
     }

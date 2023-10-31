@@ -29,5 +29,6 @@
         <Button x:Name="Settings" Content="Paramètres" Margin="56,350,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Settings_Click"/>
         <Button x:Name="Vocal" Content="V" HorizontalAlignment="Left" Height="25" Margin="100,10,0,0" VerticalAlignment="Top" Width="25" RenderTransformOrigin="1.156,0.26" Click="Vocal_Click"/>
         <Button x:Name="Move" Content="D" HorizontalAlignment="Left" Height="25" Margin="56,10,0,0" VerticalAlignment="Top" Width="25" RenderTransformOrigin="-10.968,0.407" Click="Move_Click" />
+        <Button x:Name="A_propos" Content="?" HorizontalAlignment="Left" Height="25" Margin="319,10,0,0" VerticalAlignment="Top" Width="25" Click="Help_Click" />
     </Grid>
 </Window>

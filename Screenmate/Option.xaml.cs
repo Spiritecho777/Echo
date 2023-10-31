@@ -15,6 +15,7 @@ namespace Screenmate
         Setting Setting = new Setting();
         Procedure Procedure = new Procedure();
         ChangeSM Changesm = new ChangeSM();
+        EditVoc Editvoc = new EditVoc();
         public Option()
         {
             InitializeComponent();
@@ -95,17 +96,20 @@ namespace Screenmate
         private void Tuto_Click(object sender, RoutedEventArgs e)
         {
             Procedure.Show();
+            this.Hide();
         }
 
         private void ChangeSM_Click(object sender, RoutedEventArgs e)
         {
             ChangeSM Changesm =new ChangeSM();
-            Changesm.Show();        
+            Changesm.Show();
+            this.Hide();
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             Setting.Show();
+            this.Hide();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -118,13 +122,14 @@ namespace Screenmate
 
         private void KillApp_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(1);
+            Environment.Exit(0);
         }
 
         private void EditVoc_Click(object sender, RoutedEventArgs e)
         {
             EditVoc Editvoc = new EditVoc();
             Editvoc.Show();
+            this.Hide();
         }
         #endregion
 
@@ -140,6 +145,11 @@ namespace Screenmate
             Properties.Settings.Default.VocalEnabled = !Properties.Settings.Default.VocalEnabled;
             Properties.Settings.Default.Save();
             Vocal.Background = Properties.Settings.Default.VocalEnabled ? Brushes.Blue : Brushes.Red;
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Numero de version actuel : "+ System.Windows.Forms.Application.ProductVersion);
         }
         #endregion
 
@@ -168,6 +178,33 @@ namespace Screenmate
                     process.Kill();
                 }
             }
+        }
+
+        public void Explo()
+        {
+            Procedure.Show();
+        }
+
+        public void ChangeC()
+        {
+            ChangeSM Changesm = new ChangeSM();
+            Changesm.Show();
+        }
+
+        public void EditCmd()
+        {
+            EditVoc Editvoc = new EditVoc();
+            Editvoc.Show();
+        }
+
+        public void param()
+        {
+            Setting.Show();
+        }
+
+        public void Fermeture()
+        {
+            Environment.Exit(0);
         }
 
         public void MoveChangeColor()
