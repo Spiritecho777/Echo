@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Documents;
 
-namespace Screenmate
+namespace Screenmate.Module
 {
     public partial class Setting : Window
     {

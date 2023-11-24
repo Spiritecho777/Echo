@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Path = System.IO.Path;
 
-namespace Screenmate
+namespace Screenmate.Module
 {
     public partial class EditVoc : Window
     {

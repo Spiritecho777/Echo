@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
-namespace Screenmate
+namespace Screenmate.Module
 {
     public partial class AddSpritesDialog : Window
     {

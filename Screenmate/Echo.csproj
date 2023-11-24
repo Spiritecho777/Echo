@@ -82,15 +82,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AddSpritesDialog.xaml">
+    <Page Include="Module\AddSpritesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ChangeSM.xaml">
+    <Page Include="Module\Calendrier.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EditVoc.xaml">
+    <Page Include="Module\ChangeSM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\EditVoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,46 +102,49 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddSpritesDialog.xaml.cs">
+    <Compile Include="Module\AddSpritesDialog.xaml.cs">
       <DependentUpon>AddSpritesDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ChangeSM.xaml.cs">
+    <Compile Include="Module\Calendrier.xaml.cs">
+      <DependentUpon>Calendrier.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\ChangeSM.xaml.cs">
       <DependentUpon>ChangeSM.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classe\CmdVoc.cs" />
     <Compile Include="Classe\FileManager.cs" />
-    <Compile Include="EditVoc.xaml.cs">
+    <Compile Include="Module\EditVoc.xaml.cs">
       <DependentUpon>EditVoc.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Option.xaml">
+    <Page Include="Module\Option.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Procedure.xaml">
+    <Page Include="Module\Procedure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Setting.xaml">
+    <Page Include="Module\Setting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Option.xaml.cs">
+    <Compile Include="Module\Option.xaml.cs">
       <DependentUpon>Option.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Procedure.xaml.cs">
+    <Compile Include="Module\Procedure.xaml.cs">
       <DependentUpon>Procedure.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Setting.xaml.cs">
+    <Compile Include="Module\Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">

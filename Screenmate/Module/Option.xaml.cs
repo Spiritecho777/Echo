@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Screenmate.Module;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Screenmate
+namespace Screenmate.Module
 {
     public partial class Option : Window
     {
@@ -129,6 +130,13 @@ namespace Screenmate
         {
             EditVoc Editvoc = new EditVoc();
             Editvoc.Show();
+            this.Hide();
+        }
+
+        private void Rappel_Click(object sender, RoutedEventArgs e)
+        {
+            Calendrier calendar = new Calendrier();
+            calendar.Show();
             this.Hide();
         }
         #endregion

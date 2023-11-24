@@ -1,4 +1,4 @@
-﻿<Window x:Class="Screenmate.Option"
+﻿<Window x:Class="Screenmate.Module.Option"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,7 +21,7 @@
         <Button x:Name="Tuto" Content="Explorateur de fichiers" Margin="56,110,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Tuto_Click"/>
         <Button x:Name="Dictee" Content="..." Margin="56,150,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20"/>
         <Button x:Name="button_Copy3" Content="Button" Margin="56,190,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20"/>
-        <Button x:Name="button_Copy4" Content="Button" Margin="56,230,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20"/>
+        <Button x:Name="Calendar" Content="Rappel" Margin="56,230,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Rappel_Click"/>
         <Button x:Name="EditCV" Content="Commande Vocal" Margin="56,270,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="EditVoc_Click"/>
         <Button x:Name="Back" Content="Retour" Margin="56,390,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Back_Click"/>
         <Button x:Name="ChangeSM" Content="Changer de compagnon" Margin="56,310,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="ChangeSM_Click"/>

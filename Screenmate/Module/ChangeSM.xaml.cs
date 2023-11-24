@@ -1,4 +1,5 @@
 ﻿using Screenmate.Classe;
+using Screenmate.Module;
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ using Path = System.IO.Path;
 using System.Runtime.Remoting.Messaging;
 using System.Web.UI.WebControls;
 
-namespace Screenmate
+namespace Screenmate.Module
 {
     public partial class ChangeSM : Window
     {
