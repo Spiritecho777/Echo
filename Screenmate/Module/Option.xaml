@@ -3,32 +3,40 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Screenmate"
+      xmlns:local="clr-namespace:Screenmate.Module"
       mc:Ignorable="d" 
-      d:DesignHeight="480" d:DesignWidth="400"
+      d:DesignHeight="230" d:DesignWidth="350"
       Title="Option"
-      Height="480" Width="400"
-      MinWidth="300"
+      Height="230" Width="350"
       Background="LightGray" WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize">
 
     <Grid>
-        <Button x:Name="WorkApp" Margin="56,50,210,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="39" Click="WorkApp_Click" ToolTip="Les applications sont a paramétrer dans 'Paramètres'">
+        <Button x:Name="WorkApp" Margin="20,50,190,0" VerticalAlignment="Top" Height="39" Click="WorkApp_Click" ToolTip="Les applications sont a paramétrer dans 'Paramètres'">
             <TextBlock TextAlignment="Justify" TextWrapping="Wrap">Lancer applications</TextBlock>
         </Button>
-        <Button x:Name="WorkAppClose" Margin="210,50,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="39" Click="WorkAppClose_Click" ToolTip="Les applications sont a paramétrer dans 'Paramètres'">
+        <Button x:Name="WorkAppClose" Margin="190,50,20,0" VerticalAlignment="Top" Height="39" Click="WorkAppClose_Click" ToolTip="Les applications sont a paramétrer dans 'Paramètres'">
             <TextBlock TextAlignment="Justify" TextWrapping="Wrap">Quitter applications</TextBlock>
         </Button>
-        <Button x:Name="Tuto" Content="Explorateur de fichiers" Margin="56,110,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Tuto_Click"/>
-        <Button x:Name="Dictee" Content="..." Margin="56,150,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20"/>
-        <Button x:Name="button_Copy3" Content="Button" Margin="56,190,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20"/>
+
+        <Button x:Name="Tuto" Content="Explorateur de fichiers" Margin="20,110,20,0" VerticalAlignment="Top" Height="20" Click="Tuto_Click"/>
+        <Button x:Name="Back" Content="Retour" Margin="20,150,20,0" VerticalAlignment="Top" Height="20" Click="Back_Click"/>
+        <Button x:Name="KillApp" Content="Quitter" Margin="20,190,20,0" VerticalAlignment="Top" Height="20" Click="KillApp_Click"/>
+        
+        <Button x:Name="Vocal" HorizontalAlignment="Left" Height="25" Margin="60,10,0,0" VerticalAlignment="Top" Width="25" Click="Vocal_Click">
+            <Image Source="/icone/micro.png"/>
+        </Button>
+        <Button x:Name="Settings" Margin="225,10,20,0" VerticalAlignment="Top" Width="25" Height="25" Click="Settings_Click">
+            <Image x:Name="machin" Source="/icone/setting.png"/>
+        </Button>
+        <Button x:Name="Move" Content="D" HorizontalAlignment="Left" Height="25" Margin="20,10,0,0" VerticalAlignment="Top" Width="25" Click="Move_Click" />
+        <Button x:Name="A_propos" Content="?" HorizontalAlignment="Left" Height="25" Margin="305,10,20,0" VerticalAlignment="Top" Width="25" Click="Help_Click" />
+
+        <!--<Button x:Name="Settings" Content="Paramètres" Margin="56,350,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Settings_Click"/>
+        <Button x:Name="ChangeSM" Content="Changer de compagnon" Margin="56,310,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="ChangeSM_Click"/>
         <Button x:Name="Calendar" Content="Rappel" Margin="56,230,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Rappel_Click"/>
         <Button x:Name="EditCV" Content="Commande Vocal" Margin="56,270,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="EditVoc_Click"/>
-        <Button x:Name="Back" Content="Retour" Margin="56,390,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Back_Click"/>
-        <Button x:Name="ChangeSM" Content="Changer de compagnon" Margin="56,310,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="ChangeSM_Click"/>
-        <Button x:Name="KillApp" Content="Quitter" Margin="56,430,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="KillApp_Click"/>
-        <Button x:Name="Settings" Content="Paramètres" Margin="56,350,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Settings_Click"/>
-        <Button x:Name="Vocal" Content="V" HorizontalAlignment="Left" Height="25" Margin="100,10,0,0" VerticalAlignment="Top" Width="25" RenderTransformOrigin="1.156,0.26" Click="Vocal_Click"/>
-        <Button x:Name="Move" Content="D" HorizontalAlignment="Left" Height="25" Margin="56,10,0,0" VerticalAlignment="Top" Width="25" RenderTransformOrigin="-10.968,0.407" Click="Move_Click" />
-        <Button x:Name="A_propos" Content="?" HorizontalAlignment="Left" Height="25" Margin="319,10,0,0" VerticalAlignment="Top" Width="25" Click="Help_Click" />
+        
+        <Button x:Name="Dictee" Content="..." Margin="56,150,56,0" VerticalAlignment="Top" Height="20"/>
+        <Button x:Name="button_Copy3" Content="Button" Margin="56,190,56,0" VerticalAlignment="Top" Height="20"/>-->
     </Grid>
 </Window>

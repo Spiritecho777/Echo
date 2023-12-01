@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Screenmate"
         mc:Ignorable="d"
-        Title="Calendrier" Height="450" Width="800"
-        Background="LightGray" WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize">
+        Title="Calendrier" Height="400" Width="800"
+        Background="LightGray" ShowInTaskbar="False" ResizeMode="NoResize">
 
     <Window.Resources>
         <ContextMenu x:Key="CalendarContextMenu">
@@ -16,7 +16,13 @@
         </ContextMenu>
     </Window.Resources>
 
-    <Grid>
-        <Calendar x:Name="calendar" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" PreviewMouseRightButtonDown="OptionsContext_Calendar"/>
+        <Grid>
+        <Viewbox Stretch="Uniform" StretchDirection="Both" HorizontalAlignment="Left" >
+            <Calendar x:Name="calendar" SelectionMode="MultipleRange" PreviewMouseRightButtonDown="OptionsContext_Calendar">
+                <Calendar.SelectedDates>
+
+                </Calendar.SelectedDates>
+            </Calendar>
+        </Viewbox>
     </Grid>
 </Window>

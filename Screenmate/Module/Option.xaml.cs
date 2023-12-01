@@ -13,10 +13,12 @@ namespace Screenmate.Module
         string truepath = "";
         string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public bool allowedMove = false;
+        
+        public static InitPath initPath = new InitPath();
+        public static ChangeSM Changesm = new ChangeSM();
+
         Setting Setting = new Setting();
         Procedure Procedure = new Procedure();
-        ChangeSM Changesm = new ChangeSM();
-        EditVoc Editvoc = new EditVoc();
         public Option()
         {
             InitializeComponent();
@@ -45,7 +47,7 @@ namespace Screenmate.Module
                 sr.Close();
                 for (int i = 0; i < lines.Count; i++)
                 {
-                    Setting.listPath.Items.Add(lines[i]);
+                    initPath.listPath.Items.Add(lines[i]);
                 }
             }
             else
@@ -57,9 +59,9 @@ namespace Screenmate.Module
         #region gros bouton
         private void WorkApp_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < Setting.listPath.Items.Count; i++)
+            for (int i = 0; i < initPath.listPath.Items.Count; i++)
             {
-                truepath = Setting.listPath.Items[i].ToString();
+                truepath = initPath.listPath.Items[i].ToString();
                 System.Diagnostics.Process.Start(truepath);
             }
             if (allowedMove == true)
@@ -72,14 +74,13 @@ namespace Screenmate.Module
 
         private void WorkAppClose_Click(object sender, RoutedEventArgs e)
         {
-            for (int i2 = 0; i2 < Setting.listPath.Items.Count; i2++)
+            for (int i2 = 0; i2 < initPath.listPath.Items.Count; i2++)
             {
-                string pathn = Setting.listPath.Items[i2].ToString();
-                int pathc1 = pathn.IndexOf(".");
+                string pathn = initPath.listPath.Items[i2].ToString();
+                int pathc1 = pathn.LastIndexOf(".");
                 int pathc2 = pathn.LastIndexOf("/");
                 int pathc = pathc1 - pathc2 - 1;
                 string appname = pathn.Substring(pathc2 + 1, pathc);
-
                 foreach (var process in Process.GetProcessesByName(appname))
                 {
                     process.Kill();
@@ -100,13 +101,6 @@ namespace Screenmate.Module
             this.Hide();
         }
 
-        private void ChangeSM_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeSM Changesm =new ChangeSM();
-            Changesm.Show();
-            this.Hide();
-        }
-
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             Setting.Show();
@@ -118,12 +112,26 @@ namespace Screenmate.Module
             Changesm.Hide();
             Setting.Hide();
             Procedure.Hide();
-            this.Hide();           
+            this.Hide();
         }
 
         private void KillApp_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        /*
+        private void ChangeSM_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeSM Changesm =new ChangeSM();
+            Changesm.Show();
+            this.Hide();
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            Setting.Show();
+            this.Hide();
         }
 
         private void EditVoc_Click(object sender, RoutedEventArgs e)
@@ -139,6 +147,7 @@ namespace Screenmate.Module
             calendar.Show();
             this.Hide();
         }
+        */
         #endregion
 
         #region petit bouton
@@ -164,18 +173,18 @@ namespace Screenmate.Module
         #region méthode annexe
         public void StartDay()
         {
-            for (int i = 0; i < Setting.listPath.Items.Count; i++)
+            for (int i = 0; i < initPath.listPath.Items.Count; i++)
             {
-                truepath = Setting.listPath.Items[i].ToString();
+                truepath = initPath.listPath.Items[i].ToString();
                 System.Diagnostics.Process.Start(truepath);
             }
         }
 
         public void EndDay()
         {
-            for (int i2 = 0; i2 < Setting.listPath.Items.Count; i2++)
+            for (int i2 = 0; i2 < initPath.listPath.Items.Count; i2++)
             {
-                string pathn = Setting.listPath.Items[i2].ToString();
+                string pathn = initPath.listPath.Items[i2].ToString();
                 int pathc1 = pathn.IndexOf(".");
                 int pathc2 = pathn.LastIndexOf("/");
                 int pathc = pathc1 - pathc2 - 1;

@@ -128,11 +128,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Module\Setting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Module\Procedure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Module\Setting.xaml">
+    <Page Include="Module\InitPath.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,11 +145,14 @@
     <Compile Include="Module\Option.xaml.cs">
       <DependentUpon>Option.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Module\Setting.xaml.cs">
+      <DependentUpon>Setting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Module\Procedure.xaml.cs">
       <DependentUpon>Procedure.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Module\Setting.xaml.cs">
-      <DependentUpon>Setting.xaml</DependentUpon>
+    <Compile Include="Module\InitPath.xaml.cs">
+      <DependentUpon>InitPath.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -200,6 +207,9 @@
   <ItemGroup>
     <Resource Include="image\MissedFile.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="image\icone\micro.png" />
+    <Resource Include="image\icone\setting.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

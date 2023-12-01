@@ -51,7 +51,7 @@ namespace Screenmate
         List<CmdVoc> cmdVoc = new List<CmdVoc>();
         List<string> list0 = new List<string>();
         List<string> list1 = new List<string>();
-        List<string> list2= new List<string>();
+        List<string> list2 = new List<string>();
         List<string> list3 = new List<string>();
         List<string> list4 = new List<string>();
         List<string> list5 = new List<string>();
