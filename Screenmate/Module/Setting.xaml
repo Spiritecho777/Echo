@@ -5,12 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Screenmate.Module"
         mc:Ignorable="d"
-        Title="Parametres" Height="450" Width="800"
-        WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize">
+        Title="Parametres" Height="150" Width="200"
+        Background="LightGray" WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize">
     <Grid>
-        <Button x:Name="Calendar" Content="Rappel" Margin="56,230,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Rappel_Click"/>
-        <Button x:Name="EditCV" Content="Commande Vocal" Margin="56,270,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="EditVoc_Click"/>
-        <Button x:Name="ChangeSM" Content="Changer de compagnon" Margin="56,310,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="ChangeSM_Click"/>
-        <Button x:Name="Settings" Content="Paramètres" Margin="56,350,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Settings_Click"/>
+        <Button x:Name="Calendar" Margin="40,10,125,0" VerticalAlignment="Top" Height="25" Width="25" Click="Rappel_Click" ToolTip="Edition des rappels">
+            <Image Source="/image/icone/calendrier.png"/>
+        </Button>
+        <Button x:Name="EditCV" Margin="125,10,40,0" VerticalAlignment="Top" Height="25" Width="25" Click="EditVoc_Click" ToolTip="Edition des commande vocales">
+            <Image Source="/image/icone/micro.png"/>
+        </Button>
+        <Button x:Name="ChangeSM" Margin="40,50,125,0" VerticalAlignment="Top" Height="25" Width="25" Click="ChangeSM_Click" ToolTip="Edition du compagnon d'écran">
+            <Image Source="/image/icone/apparence.png"/>
+        </Button>
+        <Button x:Name="Settings" Margin="125,50,40,0" VerticalAlignment="Top" Height="25" Width="25" Click="Settings_Click" ToolTip="Edition des chemins d'accèes pour l'ouverture et la fermeture des applications">
+            <Image Source="/image/icone/app.png"/>
+        </Button>
+        <Button x:Name="Back" Content="Retour" HorizontalAlignment="Left" Height="25" Margin="135,110,0,0" VerticalAlignment="Top" Width="50" Click="Back_Click"/>
     </Grid>
 </Window>

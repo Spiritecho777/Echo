@@ -46,5 +46,10 @@ namespace Screenmate.Module
             calendar.Show();
             this.Hide();
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

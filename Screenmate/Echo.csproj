@@ -192,6 +192,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="image\icone\micro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\icone\setting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="renards.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -208,8 +214,16 @@
     <Resource Include="image\MissedFile.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="image\icone\micro.png" />
-    <Resource Include="image\icone\setting.png" />
+    <Resource Include="image\icone\app.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\icone\Apparence.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\icone\calendrier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\icone\etat.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

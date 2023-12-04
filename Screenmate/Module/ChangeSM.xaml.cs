@@ -330,7 +330,7 @@ namespace Screenmate.Module
                     {
                         BitmapImage bitmaperr = new BitmapImage();
                         bitmaperr.BeginInit();
-                        bitmaperr.UriSource = new Uri("image/MissedFile.png", UriKind.Relative);
+                        bitmaperr.UriSource = new Uri("/image/MissedFile.png", UriKind.Relative);
                         bitmaperr.EndInit();
                         PreviewImage.Source = bitmaperr;
                     }
@@ -339,7 +339,7 @@ namespace Screenmate.Module
                 {
                     BitmapImage bitmaperr = new BitmapImage();
                     bitmaperr.BeginInit();
-                    bitmaperr.UriSource = new Uri("image/MissedFile.png", UriKind.Relative); 
+                    bitmaperr.UriSource = new Uri("/image/MissedFile.png", UriKind.Relative); 
                     bitmaperr.EndInit();
                     PreviewImage.Source = bitmaperr;
                 }
