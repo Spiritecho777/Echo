@@ -23,7 +23,8 @@ namespace Screenmate.Module
 
         private void ChangeSM_Click(object sender, RoutedEventArgs e)
         {
-            Option.Changesm.Show();
+            ChangeSM changeSM = new ChangeSM();
+            changeSM.Show();
             this.Hide();
         }
 

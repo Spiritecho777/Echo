@@ -16,7 +16,7 @@ namespace Screenmate.Module
         public bool allowedMove = false;
         
         public static InitPath initPath = new InitPath();
-        public static ChangeSM Changesm = new ChangeSM();
+        //public static ChangeSM Changesm = new ChangeSM();
 
         Setting Setting = new Setting();
         Procedure Procedure = new Procedure();
@@ -110,7 +110,7 @@ namespace Screenmate.Module
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Changesm.Hide();
+            //Changesm.Hide();
             Setting.Hide();
             Procedure.Hide();
             this.Hide();
