@@ -16,7 +16,6 @@ namespace Screenmate.Module
         public bool allowedMove = false;
         
         public static InitPath initPath = new InitPath();
-        //public static ChangeSM Changesm = new ChangeSM();
 
         Setting Setting = new Setting();
         Procedure Procedure = new Procedure();
@@ -63,7 +62,10 @@ namespace Screenmate.Module
             for (int i = 0; i < initPath.listPath.Items.Count; i++)
             {
                 truepath = initPath.listPath.Items[i].ToString();
-                System.Diagnostics.Process.Start(truepath);
+                if (!string.IsNullOrEmpty(truepath) && File.Exists(truepath))
+                {
+                    System.Diagnostics.Process.Start(truepath);
+                }
             }
             if (allowedMove == true)
             {
@@ -77,14 +79,17 @@ namespace Screenmate.Module
         {
             for (int i2 = 0; i2 < initPath.listPath.Items.Count; i2++)
             {
-                string pathn = initPath.listPath.Items[i2].ToString();
-                int pathc1 = pathn.LastIndexOf(".");
-                int pathc2 = pathn.LastIndexOf("/");
-                int pathc = pathc1 - pathc2 - 1;
-                string appname = pathn.Substring(pathc2 + 1, pathc);
-                foreach (var process in Process.GetProcessesByName(appname))
+                if (!string.IsNullOrEmpty(initPath.listPath.Items[i2].ToString()) && File.Exists(initPath.listPath.Items[i2].ToString()))
                 {
-                    process.Kill();
+                    string pathn = initPath.listPath.Items[i2].ToString();
+                    int pathc1 = pathn.LastIndexOf(".");
+                    int pathc2 = pathn.LastIndexOf("/");
+                    int pathc = pathc1 - pathc2 - 1;
+                    string appname = pathn.Substring(pathc2 + 1, pathc);
+                    foreach (var process in Process.GetProcessesByName(appname))
+                    {
+                        process.Kill();
+                    }
                 }
             }
 
@@ -102,15 +107,8 @@ namespace Screenmate.Module
             this.Hide();
         }
 
-        private void Settings_Click(object sender, RoutedEventArgs e)
-        {
-            Setting.Show();
-            this.Hide();
-        }
-
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            //Changesm.Hide();
             Setting.Hide();
             Procedure.Hide();
             this.Hide();
@@ -120,35 +118,6 @@ namespace Screenmate.Module
         {
             Environment.Exit(0);
         }
-
-        /*
-        private void ChangeSM_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeSM Changesm =new ChangeSM();
-            Changesm.Show();
-            this.Hide();
-        }
-
-        private void Settings_Click(object sender, RoutedEventArgs e)
-        {
-            Setting.Show();
-            this.Hide();
-        }
-
-        private void EditVoc_Click(object sender, RoutedEventArgs e)
-        {
-            EditVoc Editvoc = new EditVoc();
-            Editvoc.Show();
-            this.Hide();
-        }
-
-        private void Rappel_Click(object sender, RoutedEventArgs e)
-        {
-            Calendrier calendar = new Calendrier();
-            calendar.Show();
-            this.Hide();
-        }
-        */
         #endregion
 
         #region petit bouton
@@ -168,6 +137,12 @@ namespace Screenmate.Module
         private void Help_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Numero de version actuel : "+ System.Windows.Forms.Application.ProductVersion);
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            Setting.Show();
+            this.Hide();
         }
         #endregion
 

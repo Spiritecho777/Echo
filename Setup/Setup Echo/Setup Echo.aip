@@ -13,10 +13,10 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPPRODUCTICON" Value="renards.exe" Type="8"/>
     <ROW Property="Manufacturer" Value="Stusoft"/>
-    <ROW Property="ProductCode" Value="1033:{14B065B2-47D4-4013-9FAD-48EF097BEAD1} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{6B5EEC32-86E9-4B2A-81B4-C6302336F3D1} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Echo"/>
-    <ROW Property="ProductVersion" Value="1.2.7" Options="32"/>
+    <ROW Property="ProductVersion" Value="1.2.8" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{93C6EA6C-2E88-49DB-A7AD-D03BF72FA9B1}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
