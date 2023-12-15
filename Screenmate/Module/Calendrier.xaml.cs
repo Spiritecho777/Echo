@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Screenmate.Control;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,35 @@ namespace Screenmate.Module
         public Calendrier()
         {
             InitializeComponent();
+        }
+
+        private void Calendrier_Load(object sender, EventArgs e)
+        {
+            DisplayDays();
+        }
+
+        private void DisplayDays()
+        {
+            DateTime now = DateTime.Now;
+
+            DateTime startMonth = new DateTime(now.Year, now.Month, 1);
+            int days =DateTime.DaysInMonth(now.Year, now.Month);
+            int daysWeek =Convert.ToInt32(startMonth.DayOfWeek.ToString("d"))+1;
+
+            for (int i =1; i <= daysWeek; i++) 
+            {
+                BlankDaysControl blanckDays = new BlankDaysControl();
+                blanckDays.Margin=new Thickness(1,1,1,0);
+                dayContainer.Children.Add(blanckDays);
+            }
+
+            for (int i = 1; i <= days; i++) 
+            {
+                DaysControl daysControl = new DaysControl();
+                daysControl.Margin=new Thickness(1,1,1,0);
+                daysControl.days(i);
+                dayContainer.Children.Add(daysControl);
+            }
         }
 
         public DateTime? SelectedDate { get; private set; }

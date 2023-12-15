@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("Screenmate")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP Inc.")]
+[assembly: AssemblyCompany("Stusoft")]
 [assembly: AssemblyProduct("Screenmate")]
-[assembly: AssemblyCopyright("Copyright © HP Inc. 2023")]
+[assembly: AssemblyCopyright("Copyright © Stusoft 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

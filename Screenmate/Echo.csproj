@@ -82,6 +82,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Control\BlankDaysControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\DaysControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Module\AddSpritesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -102,6 +110,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Control\BlankDaysControl.xaml.cs">
+      <DependentUpon>BlankDaysControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\DaysControl.xaml.cs">
+      <DependentUpon>DaysControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Module\AddSpritesDialog.xaml.cs">
       <DependentUpon>AddSpritesDialog.xaml</DependentUpon>
     </Compile>
