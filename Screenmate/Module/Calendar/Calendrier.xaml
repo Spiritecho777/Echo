@@ -7,19 +7,19 @@
         xmlns:local="clr-namespace:Screenmate"
         mc:Ignorable="d"
         Loaded="Calendrier_Load"
-        Title="Calendrier" Height="400" Width="650"
+        Title="Calendrier" Height="450" Width="670"
         Background="LightGray" ShowInTaskbar="False" ResizeMode="NoResize">
 
     <Window.Resources>
         <ContextMenu x:Key="CalendarContextMenu">
             <MenuItem Header="Ajouter rappel" Click="AddRappel_Click"/>
             <MenuItem Header="Supprimer rappel" Click="DelRappel_Click"/>
-            <MenuItem Header="Modifier rappel" Click="ModifyRappel_Click"/>
         </ContextMenu>
     </Window.Resources>
 
     <Grid>
-        <WrapPanel x:Name="dayContainer" Height="300" Width="632" Margin="0,0,0,0">
+        <Label x:Name="DateMY" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" Height="40" Margin="0,10,0,0"/>
+        <WrapPanel Height="30" Margin="9,55,9,0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
             <Label Content="Lundi" HorizontalContentAlignment="Center" Width="88"  FontSize="15" Margin="1,0,1,0"/>
             <Label Content="Mardi" HorizontalContentAlignment="Center" Width="88" FontSize="15" Margin="1,0,1,0"/>
             <Label Content="Mercredi" HorizontalContentAlignment="Center" Width="88" FontSize="15" Margin="1,0,1,0"/>
@@ -28,7 +28,10 @@
             <Label Content="Samedi" HorizontalContentAlignment="Center" Width="88" FontSize="15" Margin="1,0,1,0"/>
             <Label Content="Dimanche" HorizontalContentAlignment="Center" Width="88" FontSize="15" Margin="1,0,1,0"/>
         </WrapPanel>
-
-
+        
+        <WrapPanel x:Name="dayContainer" Height="330" Width="632" Margin="9,75,9,0"/>
+        <Button x:Name="Next" Content="Suivant" Click="Next_Click" Height="20" Width="70" Margin="340,390,240,0"/>
+        <Button x:Name="Previous" Content="Précedent" Click="Previous_Click" Height="20" Width="70" Margin="240,390,340,0"/>
+        <Button x:Name="Back" Content="Retour" Click="Back_Click" Height="20" Width="70" Margin="570,390,0,0"/>
     </Grid>
 </Window>

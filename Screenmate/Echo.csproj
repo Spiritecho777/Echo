@@ -90,15 +90,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Module\AddSpritesDialog.xaml">
+    <Page Include="Module\Calendar\AddEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Module\Calendrier.xaml">
+    <Page Include="Module\ChangeSM\AddSpritesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Module\ChangeSM.xaml">
+    <Page Include="Module\Calendar\Calendrier.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\ChangeSM\ChangeSM.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,17 +120,20 @@
     <Compile Include="Control\DaysControl.xaml.cs">
       <DependentUpon>DaysControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Module\AddSpritesDialog.xaml.cs">
+    <Compile Include="Module\Calendar\AddEvent.xaml.cs">
+      <DependentUpon>AddEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\ChangeSM\AddSpritesDialog.xaml.cs">
       <DependentUpon>AddSpritesDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Module\Calendrier.xaml.cs">
+    <Compile Include="Module\Calendar\Calendrier.xaml.cs">
       <DependentUpon>Calendrier.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Module\ChangeSM.xaml.cs">
+    <Compile Include="Module\ChangeSM\ChangeSM.xaml.cs">
       <DependentUpon>ChangeSM.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classe\CmdVoc.cs" />
