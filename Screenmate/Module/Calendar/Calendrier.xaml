@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Loaded="Calendrier_Load"
         Title="Calendrier" Height="450" Width="670"
-        Background="LightGray" ShowInTaskbar="False" ResizeMode="NoResize">
+        Background="LightGray" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="None">
 
     <Window.Resources>
         <ContextMenu x:Key="CalendarContextMenu">

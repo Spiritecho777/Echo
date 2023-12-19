@@ -7,10 +7,11 @@
              mc:Ignorable="d" 
              Height="50" Width="88"
              Background="GhostWhite">
-    
-    
+
+
     <Grid>
         <Border x:Name="border" BorderBrush="Transparent" BorderThickness="1" Background="Transparent"/>
         <Label x:Name="NumberDays" Content="00" Margin="0"/>
+        <Ellipse x:Name="Flag" Margin="72,1,1,34" Fill="red" Visibility="Hidden"/>
     </Grid>
 </UserControl>

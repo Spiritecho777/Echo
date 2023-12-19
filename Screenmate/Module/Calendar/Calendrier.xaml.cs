@@ -1,4 +1,5 @@
 ﻿using Screenmate.Control;
+using Screenmate.Module;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -16,9 +17,12 @@ using System.Windows.Shapes;
 
 namespace Screenmate.Module
 {
+
     public partial class Calendrier : Window
     {
         int month, year;
+        string Emandy, Eday, Edate;
+        DaysControl Item;
 
         public Calendrier()
         {
@@ -146,12 +150,17 @@ namespace Screenmate.Module
                 contextMenu.PlacementTarget = calendarItem;
                 contextMenu.IsOpen = true;
                 e.Handled = true;
+                Eday = calendarItem.NumberDays.Content.ToString();
+                Emandy=DateMY.Content.ToString();
+                Edate=Eday + " " + Emandy;
+                Item = calendarItem;
             }
         }
 
         private void AddRappel_Click(object sender, RoutedEventArgs e)
         {
-
+            Calendar.AddEvent Event = new Calendar.AddEvent(Item,Edate);
+            Event.Show();
         }
 
         private void DelRappel_Click(object sender, RoutedEventArgs e)

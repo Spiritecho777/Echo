@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Screenmate.Module.Calendar"
         mc:Ignorable="d"
-        Title="AddEvent" Height="450" Width="800">
+        Title="Evennement" Height="190" Width="320" Background="LightGray" ShowInTaskbar="False" ResizeMode="NoResize">
     <Grid>
-        
+        <Label x:Name="Date" HorizontalContentAlignment="Center" FontSize="20" Height="45" VerticalAlignment="Top" Margin="60,0,0,0" HorizontalAlignment="Left" Width="200"/>
+        <TextBox x:Name="Type" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,30,0,0" TextWrapping="Wrap" Text="" Width="290"/>
+        <ComboBox x:Name="Frequence" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,65,0,0" Width="200" IsEnabled="False">
+            <ComboBoxItem Content="Quotidien"/>
+            <ComboBoxItem Content="Hebdomadaire"/>
+            <ComboBoxItem Content="Mensuel"/>
+            <ComboBoxItem Content="Annuel"/>
+        </ComboBox>
+        <CheckBox x:Name="Periodic" Content="Périodique" VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Margin="215,70,0,0" Width="100" Checked="Periodic_Check" Unchecked="Periodic_Uncheck"/>
+        <Button x:Name="Back" Content="Retour" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="200,110,0,0" Width="90" Click="Back_Click"/>
+        <Button x:Name="Confirm" Content="Confirmer" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,110,0,0"  Width="90" Click="Confirm_Click"/>
     </Grid>
 </Window>
