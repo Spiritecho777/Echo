@@ -1,6 +1,8 @@
-﻿using Screenmate.Control;
+﻿using Screenmate.Classe;
+using Screenmate.Control;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace Screenmate.Module.Calendar
 {
@@ -21,12 +24,16 @@ namespace Screenmate.Module.Calendar
     {
         bool ilestcheck = false;
         DaysControl daysControl;
+        private List<EventSave> EventDate = new List<EventSave>();
+        //private List<string> EventDate;
+        private string DateS;
 
-        public AddEvent(DaysControl Item,string Edate)
+        public AddEvent(DaysControl Item,string Edate, string Etemp)
         {
             InitializeComponent();
             daysControl = Item;
             Date.Content = Edate;
+            DateS=Etemp;
         }
 
         private void Periodic_Check(object sender, RoutedEventArgs e)
@@ -66,12 +73,22 @@ namespace Screenmate.Module.Calendar
                 if(Frequence.SelectedIndex == 3)
                 {
                     //Annuel
-
+                    daysControl.Flag.Visibility = Visibility.Visible;
+                    daysControl.content.Content = Type.Text;
+                    string contain = Type.Text;
+                    string Event = DateS;
+                    bool Repeat = true;
+                    Save(contain, Event, Repeat);
                 }
             }
             else
             {
                 daysControl.Flag.Visibility= Visibility.Visible;
+                daysControl.content.Content = Type.Text;
+                string contain = Type.Text;
+                string Event = DateS;
+                bool Repeat = false;
+                Save(contain, Event, Repeat);
             }
             Close();
         }
@@ -79,6 +96,24 @@ namespace Screenmate.Module.Calendar
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Save(string contenue,string date, bool frequence)
+        {
+            string appDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
+            string Savefile = System.IO.Path.Combine(appDirectory, "Calendar.dat");
+
+            List<EventSave> existingEvents = EventSave.LoadEventSave(Savefile);
+
+            //EventDate.Add(new EventSave
+            existingEvents.Add(new EventSave
+            {
+                Content = contenue,
+                Annuel = frequence,
+                Date = date
+            });
+
+            EventSave.SaveEventSave(existingEvents, Savefile);
         }
     }
 }
