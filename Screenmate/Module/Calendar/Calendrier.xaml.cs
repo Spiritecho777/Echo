@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,45 +26,17 @@ namespace Screenmate.Module
     public partial class Calendrier : Window
     {
         int month, year;
-        string Emandy, Eday, Edate,Etemp;
+        string Emandy, Eday, Edate, Etemp;
         private List<EventSave> EventDate = new List<EventSave>();
         private List<String> EventDateString = new List<string>();
         private List<String> EventContent = new List<string>();
+        private List<String> EventYear = new List<string>();
+        private List<bool> EventFrequence = new List<bool>();
         DaysControl Item;
 
         public Calendrier()
         {
             InitializeComponent();
-
-            /*string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
-            string Savefile = System.IO.Path.Combine(appDirectory, "Calendar.dat");
-            if (File.Exists(Savefile))
-            {
-                StreamReader sr = new StreamReader(Savefile);
-                List<string> lines = new List<string>();
-
-                while (true)
-                {
-                    string line = sr.ReadLine();
-                    if (line == null)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        lines.Add(line);
-                    }
-                }
-                sr.Close();
-                for (int i = 0; i < lines.Count; i++)
-                {
-                    EventDate.Add(lines[i]);
-                }
-            }
-            else
-            {
-                using (StreamWriter writer = File.CreateText(Savefile)) { }
-            }*/
 
             string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
             string filePath = Path.Combine(appDirectory, "Calendar.dat");
@@ -89,7 +62,9 @@ namespace Screenmate.Module
                 foreach (var EventSave in EventDate)
                 {
                     EventDateString.Add(EventSave.Date);
-                    EventContent.Add(EventSave.Content);    
+                    EventContent.Add(EventSave.Content);
+                    EventFrequence.Add(EventSave.Annuel);
+                    EventYear.Add(EventSave.Year);
                 }
             }
         }
@@ -109,12 +84,12 @@ namespace Screenmate.Module
             DateMY.Content = char.ToUpper(monthName[0]) + monthName.Substring(1) + " " + year;
 
             DateTime startMonth = new DateTime(year, month, 1);
-            int days =DateTime.DaysInMonth(year, month);
-            int daysWeek =Convert.ToInt32(startMonth.DayOfWeek.ToString("d"))-1;
-            for (int i =1; i <= daysWeek; i++) 
+            int days = DateTime.DaysInMonth(year, month);
+            int daysWeek = Convert.ToInt32(startMonth.DayOfWeek.ToString("d")) - 1;
+            for (int i = 1; i <= daysWeek; i++)
             {
                 BlankDaysControl blanckDays = new BlankDaysControl();
-                blanckDays.Margin=new Thickness(1,1,1,0);
+                blanckDays.Margin = new Thickness(1, 1, 1, 0);
                 dayContainer.Children.Add(blanckDays);
             }
 
@@ -127,23 +102,7 @@ namespace Screenmate.Module
                 dayContainer.Children.Add(daysControl);
             }
 
-            //METTRE EN PLACE LA REPETITION + ANNUEL + MAJ CHANGEMENT DE MOIS ETC...
-            foreach (DaysControl daysControl in dayContainer.Children.OfType<DaysControl>())
-            {
-                for (int i = 0; i < EventDateString.Count; i++)
-                {
-                    string dayContent = daysControl.NumberDays.Content.ToString();
-                    string monthYearContent = DateMY.Content.ToString();
-                    int countLM = monthYearContent.IndexOf(' ');
-                    string currentDate = dayContent + " " + monthYearContent.Substring(0, countLM);
-
-                    if (currentDate == EventDateString[i])
-                    {
-                        daysControl.Flag.Visibility = Visibility.Visible;
-                        daysControl.content.Content = EventContent[i];
-                    }
-                }
-            }
+            LoadEvent();
         }
 
         private void Previous_Click(object sender, RoutedEventArgs e)
@@ -177,6 +136,8 @@ namespace Screenmate.Module
                 daysControl.days(i);
                 dayContainer.Children.Add(daysControl);
             }
+
+            LoadEvent();
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
@@ -210,6 +171,8 @@ namespace Screenmate.Module
                 daysControl.days(i);
                 dayContainer.Children.Add(daysControl);
             }
+
+            LoadEvent();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -234,23 +197,66 @@ namespace Screenmate.Module
                 contextMenu.IsOpen = true;
                 e.Handled = true;
                 Eday = calendarItem.NumberDays.Content.ToString();
-                Emandy=DateMY.Content.ToString();
-                Edate=Eday + " " + Emandy;
+                Emandy = DateMY.Content.ToString();
+                Edate = Eday + " " + Emandy;
                 int countM = Emandy.IndexOf(' ');
-                Etemp = calendarItem.NumberDays.Content.ToString() + " " + Emandy.Substring(0,countM) ;
+                Etemp = calendarItem.NumberDays.Content.ToString() + " " + Emandy.Substring(0, countM);
                 Item = calendarItem;
             }
         }
 
         private void AddRappel_Click(object sender, RoutedEventArgs e)
         {
-            Calendar.AddEvent Event = new Calendar.AddEvent(Item,Edate,Etemp);
+            Calendar.AddEvent Event = new Calendar.AddEvent(Item, Edate, Etemp);
             Event.Show();
         }
 
         private void DelRappel_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void LoadEvent()
+        {
+            DateTime now = DateTime.Now;
+            string Today = now.Year.ToString();
+
+            foreach (DaysControl daysControl in dayContainer.Children.OfType<DaysControl>())
+            {
+                if (EventDateString != null)
+                {
+                    for (int i = 0; i < EventDateString.Count; i++)
+                    {
+                        string dayContent = daysControl.NumberDays.Content.ToString();
+                        string monthYearContent = DateMY.Content.ToString();
+                        int countLM = monthYearContent.IndexOf(' ');
+                        string currentDate = dayContent + " " + monthYearContent.Substring(0, countLM);
+
+                        if (EventFrequence[i] == true)
+                        {
+                            //MessageBox.Show(EventFrequence[i].ToString());
+                            if (currentDate == EventDateString[i])
+                            {
+                                daysControl.Flag.Visibility = Visibility.Visible;
+                                daysControl.content.Content = EventContent[i];
+                            }
+                        }
+                        else
+                        {
+                            if (EventYear[i] == Today)
+                            {
+                                //TUDEVRAIS PAS RENTRER LA TOUT LE TEMPS POURQUOI ??????
+                                //MessageBox.Show(EventYear[i].ToString());
+                                if (currentDate == EventDateString[i])
+                                {
+                                    daysControl.Flag.Visibility = Visibility.Visible;
+                                    daysControl.content.Content = EventContent[i];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

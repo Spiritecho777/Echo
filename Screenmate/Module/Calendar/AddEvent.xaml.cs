@@ -25,7 +25,6 @@ namespace Screenmate.Module.Calendar
         bool ilestcheck = false;
         DaysControl daysControl;
         private List<EventSave> EventDate = new List<EventSave>();
-        //private List<string> EventDate;
         private string DateS;
 
         public AddEvent(DaysControl Item,string Edate, string Etemp)
@@ -78,7 +77,8 @@ namespace Screenmate.Module.Calendar
                     string contain = Type.Text;
                     string Event = DateS;
                     bool Repeat = true;
-                    Save(contain, Event, Repeat);
+                    string year = " ";
+                    Save(contain, Event, year, Repeat);
                 }
             }
             else
@@ -88,7 +88,9 @@ namespace Screenmate.Module.Calendar
                 string contain = Type.Text;
                 string Event = DateS;
                 bool Repeat = false;
-                Save(contain, Event, Repeat);
+                //A CHANGER FAIRE LE CALCUL CHIANT
+                string year = "2024";
+                Save(contain, Event, year, Repeat);
             }
             Close();
         }
@@ -98,7 +100,7 @@ namespace Screenmate.Module.Calendar
             Close();
         }
 
-        private void Save(string contenue,string date, bool frequence)
+        private void Save(string contenue,string date, string year, bool frequence)
         {
             string appDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
             string Savefile = System.IO.Path.Combine(appDirectory, "Calendar.dat");
@@ -110,7 +112,8 @@ namespace Screenmate.Module.Calendar
             {
                 Content = contenue,
                 Annuel = frequence,
-                Date = date
+                Date = date,
+                Year = year
             });
 
             EventSave.SaveEventSave(existingEvents, Savefile);

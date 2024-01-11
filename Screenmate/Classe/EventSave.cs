@@ -15,6 +15,7 @@ namespace Screenmate.Classe
     {
         public string Date {  get; set; }
         public string Content { get; set; }
+        public string Year { get; set; } 
         public bool Annuel { get; set; }
 
         public static void SaveEventSave(List<EventSave> Date, string filePath)
