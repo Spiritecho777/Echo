@@ -213,14 +213,27 @@ namespace Screenmate.Module
 
         private void DelRappel_Click(object sender, RoutedEventArgs e)
         {
+            /*string appDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
+            string Savefile = System.IO.Path.Combine(appDirectory, "Calendar.dat");
 
+            List<EventSave> existingEvents = EventSave.LoadEventSave(Savefile);
+
+            if (EventDate != null)
+            {
+                for (int i = 0; i < EventDateString.Count; i++)
+                {
+                    if (EventDateString[i] == Edate)
+                    {
+                        existingEvents.RemoveAt(i);
+                    }
+                }
+            }
+
+            EventSave.SaveEventSave(existingEvents, Savefile);*/
         }
 
         private void LoadEvent()
         {
-            DateTime now = DateTime.Now;
-            string Today = now.Year.ToString();
-
             foreach (DaysControl daysControl in dayContainer.Children.OfType<DaysControl>())
             {
                 if (EventDateString != null)
@@ -231,10 +244,14 @@ namespace Screenmate.Module
                         string monthYearContent = DateMY.Content.ToString();
                         int countLM = monthYearContent.IndexOf(' ');
                         string currentDate = dayContent + " " + monthYearContent.Substring(0, countLM);
+                        
+                        string convert = monthYearContent;
+                        int numb = convert.LastIndexOf(" ");
+                        numb = numb + 1;
+                        string year = convert.Substring(numb, 4);
 
                         if (EventFrequence[i] == true)
                         {
-                            //MessageBox.Show(EventFrequence[i].ToString());
                             if (currentDate == EventDateString[i])
                             {
                                 daysControl.Flag.Visibility = Visibility.Visible;
@@ -243,10 +260,8 @@ namespace Screenmate.Module
                         }
                         else
                         {
-                            if (EventYear[i] == Today)
+                            if (EventYear[i] == year)
                             {
-                                //TUDEVRAIS PAS RENTRER LA TOUT LE TEMPS POURQUOI ??????
-                                //MessageBox.Show(EventYear[i].ToString());
                                 if (currentDate == EventDateString[i])
                                 {
                                     daysControl.Flag.Visibility = Visibility.Visible;

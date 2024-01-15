@@ -54,19 +54,19 @@ namespace Screenmate.Module.Calendar
                 if (Frequence.SelectedIndex == 0)
                 {
                     //Quotidien
-
+                    MessageBox.Show("Pourquoi tu fais sa je n'en voit pas l'utilisté. PS: l'event ne sera pas créer");
                 }
 
                 if (Frequence.SelectedIndex == 1)
                 {
                     //Hebdomadaire
-
+                    MessageBox.Show("Pourquoi tu fais sa je n'en voit pas l'utilisté. PS: l'event ne sera pas créer");
                 }
 
                 if (Frequence.SelectedIndex == 2)
                 {
                     //Mensuel
-
+                    MessageBox.Show("Pourquoi tu fais sa je n'en voit pas l'utilisté. PS: l'event ne sera pas créer");
                 }
 
                 if(Frequence.SelectedIndex == 3)
@@ -88,8 +88,10 @@ namespace Screenmate.Module.Calendar
                 string contain = Type.Text;
                 string Event = DateS;
                 bool Repeat = false;
-                //A CHANGER FAIRE LE CALCUL CHIANT
-                string year = "2024";
+                string convert = Date.Content.ToString();
+                int numb = convert.LastIndexOf(" ");
+                numb = numb+1;
+                string year =convert.Substring(numb,4);
                 Save(contain, Event, year, Repeat);
             }
             Close();
@@ -107,7 +109,6 @@ namespace Screenmate.Module.Calendar
 
             List<EventSave> existingEvents = EventSave.LoadEventSave(Savefile);
 
-            //EventDate.Add(new EventSave
             existingEvents.Add(new EventSave
             {
                 Content = contenue,
