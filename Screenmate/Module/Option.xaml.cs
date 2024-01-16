@@ -52,7 +52,6 @@ namespace Screenmate.Module
             }
             else
             {
-                //test
                 Directory.CreateDirectory(appDirectory);
                 using (StreamWriter writer = File.CreateText(Savefile)) { }
             }
