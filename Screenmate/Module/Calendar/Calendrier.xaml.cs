@@ -213,23 +213,20 @@ namespace Screenmate.Module
 
         private void DelRappel_Click(object sender, RoutedEventArgs e)
         {
-            /*string appDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
+            string appDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
             string Savefile = System.IO.Path.Combine(appDirectory, "Calendar.dat");
 
             List<EventSave> existingEvents = EventSave.LoadEventSave(Savefile);
 
-            if (EventDate != null)
+            for (int i = 0; i < EventDateString.Count; i++)
             {
-                for (int i = 0; i < EventDateString.Count; i++)
+                if (EventDateString[i] == Etemp)
                 {
-                    if (EventDateString[i] == Edate)
-                    {
-                        existingEvents.RemoveAt(i);
-                    }
+                   existingEvents.RemoveAt(i);
                 }
             }
 
-            EventSave.SaveEventSave(existingEvents, Savefile);*/
+            EventSave.SaveEventSave(existingEvents, Savefile);
         }
 
         private void LoadEvent()
