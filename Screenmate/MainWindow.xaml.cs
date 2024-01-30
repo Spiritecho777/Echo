@@ -1,9 +1,11 @@
 ﻿using Screenmate.Module;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using System.Speech.Recognition;
 using System.Collections.Generic;
 using System.Windows.Media;
@@ -13,6 +15,8 @@ using System.Speech.Synthesis;
 using Screenmate.Classe;
 using System.Linq;
 using System.Windows.Documents;
+using System.Drawing;
+using System.Windows.Controls.Primitives;
 
 namespace Screenmate
 {
@@ -27,16 +31,18 @@ namespace Screenmate
         private double frequency = 1.0;
         private double amplitude = 0.2;
 
-        protected Point location;
+        protected System.Windows.Point location;
         protected double vX, vY;
 
         public int height = 100;
         public int width = 67;
 
-        public static System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-        public static System.Windows.Threading.DispatcherTimer autonomyTimer = new System.Windows.Threading.DispatcherTimer();
-        public static System.Windows.Threading.DispatcherTimer animationTimer = new System.Windows.Threading.DispatcherTimer();
-        public static System.Windows.Threading.DispatcherTimer timerToSleep = new System.Windows.Threading.DispatcherTimer();
+        public static DispatcherTimer timer = new DispatcherTimer();
+        public static DispatcherTimer autonomyTimer = new DispatcherTimer();
+        public static DispatcherTimer animationTimer = new DispatcherTimer();
+        public static DispatcherTimer timerToSleep = new DispatcherTimer();
+
+        private DispatcherTimer popupTimer = new DispatcherTimer();
 
         Option Option = new Option();
         Random alea = new Random();
@@ -46,8 +52,11 @@ namespace Screenmate
         public static List<string> animationSleep;
         public static List<string> animationMove;
 
-        private List<string> commandesVocales = new List<string>();
+        private List<EventSave> EventDate = new List<EventSave>();
+        private List<String> EventDateString = new List<string>();
+        private List<String> EventContent = new List<string>();
 
+        private List<string> commandesVocales = new List<string>();
         List<CmdVoc> cmdVoc = new List<CmdVoc>();
         List<string> list0 = new List<string>();
         List<string> list1 = new List<string>();
@@ -65,6 +74,7 @@ namespace Screenmate
         {
             InitializeComponent();
 
+            #region Commande vocal Load
             string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
             string filePath = Path.Combine(appDirectory, "Cmdvoc.dat");
 
@@ -76,7 +86,39 @@ namespace Screenmate
                     commandesVocales.AddRange(cmd.Phrase);
                 }               
             }
+            #endregion
+            
+            #region EventCalendar Load    
+            string appDirectory2 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
+            string filePath2 = Path.Combine(appDirectory2, "Calendar.dat");
 
+            if (!Directory.Exists(appDirectory2))
+            {
+                Directory.CreateDirectory(appDirectory2);
+            }
+
+            if (!File.Exists(filePath))
+            {
+                EventSave EventSave = new EventSave();
+                EventSave.SaveEventSave(EventDate, filePath2);
+                EventDate = EventSave.LoadEventSave(filePath2);
+            }
+            else
+            {
+                EventDate = EventSave.LoadEventSave(filePath2);
+            }
+
+            if (EventDate != null)
+            {
+                foreach (var EventSave in EventDate)
+                {
+                    EventDateString.Add(EventSave.Date);
+                    EventContent.Add(EventSave.Content);
+                }
+            }
+            #endregion
+
+            #region Déplacement
             animationIdle = new List<string> (ChangeSM.animIdle);           
             animationSleep = new List<string> (ChangeSM.animSleep);
             animationMove = new List<string> (ChangeSM.animMove);
@@ -86,9 +128,15 @@ namespace Screenmate
             vX = 0;
             vY = 0;
 
-            location = new Point((SystemParameters.PrimaryScreenWidth - Mate.ActualWidth) / 2, (SystemParameters.PrimaryScreenHeight - Mate.ActualHeight) / 2);
+            location = new System.Windows.Point((SystemParameters.PrimaryScreenWidth - Mate.ActualWidth) / 2, (SystemParameters.PrimaryScreenHeight - Mate.ActualHeight) / 2);
+            #endregion
 
             #region timer
+            popupTimer = new DispatcherTimer();
+            popupTimer.Interval = TimeSpan.FromMinutes(1);
+            popupTimer.Tick += PopupTimer_Tick;
+            popupTimer.Start();
+
             timer.Interval = TimeSpan.FromSeconds(0.01);
             timer.Tick += MateMove;
 
@@ -316,6 +364,11 @@ namespace Screenmate
             animationTimer.Tick -= MateIdle;
             animationTimer.Tick += MateSleep;
         }
+
+        private void PopupTimer_Tick(object sender, EventArgs e)
+        {
+            CheckAndShowPopup();
+        }
         #endregion
 
         #region Action_de_la_souris
@@ -360,6 +413,9 @@ namespace Screenmate
             animationTimer.Tick -= MateIdle;
             animationTimer.Tick += MateIdle;
 
+            /*DateTime currentTime = DateTime.Now;
+            string test = currentTime.ToString("dd MMMM", CultureInfo.CreateSpecificCulture("fr-FR"));
+            MessageBox.Show(test + " - "+EventDateString[0]);*/
             Option.Show();
         }
         #endregion
@@ -383,8 +439,28 @@ namespace Screenmate
         {
             return start + t * (end - start);
         }
+
+        private void CheckAndShowPopup()
+        {
+            DateTime currentTime = DateTime.Now;
+            DateTime targetTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, 14, 47, 0);
+
+            string test = currentTime.ToString("dd MMMM", CultureInfo.CreateSpecificCulture("fr-FR"));
+
+            MessageBox.Show(test + " - "+targetTime.ToString() +" - "+ currentTime);
+            for (int i = 0; i < EventDateString.Count; i++)
+            {
+                //DateTime eventDate = DateTime.Parse(dateString);
+
+                if (test == EventDateString[i] && currentTime.TimeOfDay >= targetTime.TimeOfDay)
+                {
+                    MessageBox.Show("Bien");
+                }
+            }
+        }
         #endregion
 
+        #region Commande Vocal
         private void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             if (Properties.Settings.Default.VocalEnabled)
@@ -502,4 +578,5 @@ namespace Screenmate
             }
         }
     }
+    #endregion
 }
