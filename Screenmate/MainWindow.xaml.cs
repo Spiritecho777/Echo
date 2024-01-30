@@ -443,16 +443,16 @@ namespace Screenmate
         private void CheckAndShowPopup()
         {
             DateTime currentTime = DateTime.Now;
-            DateTime targetTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, 14, 47, 0);
-
+            //DateTime targetTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, 14, 47, 0);
+            string targetTime = "19:05";
             string test = currentTime.ToString("dd MMMM", CultureInfo.CreateSpecificCulture("fr-FR"));
-
-            MessageBox.Show(test + " - "+targetTime.ToString() +" - "+ currentTime);
+            string test2 = currentTime.ToString("HH:mm");
+            //MessageBox.Show(test + " - "+targetTime +" - "+ currentTime);
             for (int i = 0; i < EventDateString.Count; i++)
             {
                 //DateTime eventDate = DateTime.Parse(dateString);
 
-                if (test == EventDateString[i] && currentTime.TimeOfDay >= targetTime.TimeOfDay)
+                if (test == EventDateString[i] && test2 == targetTime)
                 {
                     MessageBox.Show("Bien");
                 }
