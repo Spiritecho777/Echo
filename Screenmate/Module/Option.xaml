@@ -32,12 +32,7 @@
         </Button>
         <Button x:Name="A_propos" Content="?" HorizontalAlignment="Left" Height="25" Margin="305,10,20,0" VerticalAlignment="Top" Width="25" Click="Help_Click" />
 
-        <!--<Button x:Name="Settings" Content="Paramètres" Margin="56,350,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Settings_Click"/>
-        <Button x:Name="ChangeSM" Content="Changer de compagnon" Margin="56,310,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="ChangeSM_Click"/>
-        <Button x:Name="Calendar" Content="Rappel" Margin="56,230,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="Rappel_Click"/>
-        <Button x:Name="EditCV" Content="Commande Vocal" Margin="56,270,56,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,1.24" Height="20" Click="EditVoc_Click"/>
-        
-        <Button x:Name="Dictee" Content="..." Margin="56,150,56,0" VerticalAlignment="Top" Height="20"/>
+        <!--<Button x:Name="Dictee" Content="..." Margin="56,150,56,0" VerticalAlignment="Top" Height="20"/>
         <Button x:Name="button_Copy3" Content="Button" Margin="56,190,56,0" VerticalAlignment="Top" Height="20"/>-->
     </Grid>
 </Window>

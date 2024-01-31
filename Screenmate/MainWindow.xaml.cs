@@ -133,7 +133,7 @@ namespace Screenmate
 
             #region timer
             popupTimer = new DispatcherTimer();
-            popupTimer.Interval = TimeSpan.FromMinutes(1);
+            popupTimer.Interval = TimeSpan.FromHours(1);
             popupTimer.Tick += PopupTimer_Tick;
             popupTimer.Start();
 
@@ -443,18 +443,17 @@ namespace Screenmate
         private void CheckAndShowPopup()
         {
             DateTime currentTime = DateTime.Now;
-            //DateTime targetTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, 14, 47, 0);
-            string targetTime = "19:05";
-            string test = currentTime.ToString("dd MMMM", CultureInfo.CreateSpecificCulture("fr-FR"));
+            DateTime Tomorrow = currentTime.AddDays(+1);
+
+            string targetTime = "17:00";
+            string test = Tomorrow.ToString("d MMMM", CultureInfo.CreateSpecificCulture("fr-FR"));
             string test2 = currentTime.ToString("HH:mm");
-            //MessageBox.Show(test + " - "+targetTime +" - "+ currentTime);
+
             for (int i = 0; i < EventDateString.Count; i++)
             {
-                //DateTime eventDate = DateTime.Parse(dateString);
-
-                if (test == EventDateString[i] && test2 == targetTime)
+                if (string.Equals(test, EventDateString[i], StringComparison.OrdinalIgnoreCase) && test2 == targetTime)
                 {
-                    MessageBox.Show("Bien");
+                    MessageBox.Show("Demain il y a: " + EventContent[i]);
                 }
             }
         }

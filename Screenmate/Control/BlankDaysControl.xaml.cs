@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Screenmate.Control
 {
-    /// <summary>
-    /// Logique d'interaction pour BlankDaysControl.xaml
-    /// </summary>
     public partial class BlankDaysControl : UserControl
     {
         public BlankDaysControl()

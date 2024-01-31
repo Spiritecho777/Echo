@@ -24,7 +24,6 @@ namespace Screenmate.Module
             InitializeComponent();
             Vocal.Background = Properties.Settings.Default.VocalEnabled ? Brushes.Blue : Brushes.Red;
             Move.Background = allowedMove ? Brushes.Blue : Brushes.Red;
-            //string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string appDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EchoData");
             string Savefile = System.IO.Path.Combine(appDirectory, "Path.txt");
             if (File.Exists(Savefile))
