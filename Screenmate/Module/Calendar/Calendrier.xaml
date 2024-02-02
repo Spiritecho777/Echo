@@ -30,6 +30,8 @@
         </WrapPanel>
         
         <WrapPanel x:Name="dayContainer" Height="330" Width="632" Margin="9,75,9,0"/>
+        <Label Content="Heure du rappel:" Height="30" Width="100" Margin="3,390,570,0"/>
+        <TextBox x:Name="Rappel_Time" HorizontalContentAlignment="Center" Height="20" Width="40" Margin="68,390,500,0" ToolTip="Pour que ce champ soit pris en compte vous devez écrire l'heure sous le format suivant: HH:mm"/>
         <Button x:Name="Next" Content="Suivant" Click="Next_Click" Height="20" Width="70" Margin="340,390,240,0"/>
         <Button x:Name="Previous" Content="Précedent" Click="Previous_Click" Height="20" Width="70" Margin="240,390,340,0"/>
         <Button x:Name="Back" Content="Retour" Click="Back_Click" Height="20" Width="70" Margin="570,390,0,0"/>

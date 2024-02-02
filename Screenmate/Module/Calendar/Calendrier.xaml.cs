@@ -27,11 +27,11 @@ namespace Screenmate.Module
     {
         int month, year;
         string Emandy, Eday, Edate, Etemp;
-        private List<EventSave> EventDate = new List<EventSave>();
-        private List<String> EventDateString = new List<string>();
-        private List<String> EventContent = new List<string>();
-        private List<String> EventYear = new List<string>();
-        private List<bool> EventFrequence = new List<bool>();
+        private readonly List<EventSave> EventDate = new List<EventSave>();
+        private readonly List<String> EventDateString = new List<string>();
+        private readonly List<String> EventContent = new List<string>();
+        private readonly List<String> EventYear = new List<string>();
+        private readonly List<bool> EventFrequence = new List<bool>();
         DaysControl Item;
 
         public Calendrier()
@@ -67,6 +67,8 @@ namespace Screenmate.Module
                     EventYear.Add(EventSave.Year);
                 }
             }
+
+            Rappel_Time.Text = Properties.Settings.Default.RappelT;
         }
 
         private void Calendrier_Load(object sender, EventArgs e)
@@ -177,6 +179,8 @@ namespace Screenmate.Module
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.RappelT = Rappel_Time.Text;
+            Properties.Settings.Default.Save();
             this.Close();
         }
         #endregion

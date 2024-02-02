@@ -11,5 +11,8 @@
     <Setting Name="SpriteSource" Type="System.String" Scope="User">
       <Value Profile="(Default)">Renard (Défaut)</Value>
     </Setting>
+    <Setting Name="RappelT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">17:00</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

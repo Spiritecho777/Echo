@@ -12,13 +12,13 @@ namespace Screenmate.Module
     public partial class Option : Window
     {
         string truepath = "";
-        string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        readonly string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public bool allowedMove = false;
         
         public static InitPath initPath = new InitPath();
 
-        Setting Setting = new Setting();
-        Procedure Procedure = new Procedure();
+        readonly Setting Setting = new Setting();
+        readonly Procedure Procedure = new Procedure();
         public Option()
         {
             InitializeComponent();
@@ -190,7 +190,7 @@ namespace Screenmate.Module
             Editvoc.Show();
         }
 
-        public void param()
+        public void Param()
         {
             Setting.Show();
         }

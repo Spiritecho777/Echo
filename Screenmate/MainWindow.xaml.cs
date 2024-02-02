@@ -23,13 +23,13 @@ namespace Screenmate
     public partial class MainWindow : Window
     {
         #region Variables
-        private SpeechRecognitionEngine speechEngine;
+        private readonly SpeechRecognitionEngine speechEngine;
         private int currentFrameIndex = 0;
-        private double targetVX = 0;
-        private double targetVY = 0;
+        private readonly double targetVX = 0;
+        private readonly double targetVY = 0;
         private double timeElapsed = 0.0;
-        private double frequency = 1.0;
-        private double amplitude = 0.2;
+        private readonly double frequency = 1.0;
+        private readonly double amplitude = 0.2;
 
         protected System.Windows.Point location;
         protected double vX, vY;
@@ -42,32 +42,32 @@ namespace Screenmate
         public static DispatcherTimer animationTimer = new DispatcherTimer();
         public static DispatcherTimer timerToSleep = new DispatcherTimer();
 
-        private DispatcherTimer popupTimer = new DispatcherTimer();
+        private readonly DispatcherTimer popupTimer = new DispatcherTimer();
 
-        Option Option = new Option();
-        Random alea = new Random();
-        ChangeSM ChangeSM= new ChangeSM();
+        readonly Option Option = new Option();
+        readonly Random alea = new Random();
+        readonly ChangeSM ChangeSM = new ChangeSM();
 
         public static List<string> animationIdle;
         public static List<string> animationSleep;
         public static List<string> animationMove;
 
-        private List<EventSave> EventDate = new List<EventSave>();
-        private List<String> EventDateString = new List<string>();
-        private List<String> EventContent = new List<string>();
+        private readonly List<EventSave> EventDate = new List<EventSave>();
+        private readonly List<String> EventDateString = new List<string>();
+        private readonly List<String> EventContent = new List<string>();
 
-        private List<string> commandesVocales = new List<string>();
-        List<CmdVoc> cmdVoc = new List<CmdVoc>();
-        List<string> list0 = new List<string>();
-        List<string> list1 = new List<string>();
-        List<string> list2 = new List<string>();
-        List<string> list3 = new List<string>();
-        List<string> list4 = new List<string>();
-        List<string> list5 = new List<string>();
-        List<string> list6 = new List<string>();
-        List<string> list7 = new List<string>();
-        List<string> list8 = new List<string>();
-        List<string> list9 = new List<string>();
+        private readonly List<string> commandesVocales = new List<string>();
+        readonly List<CmdVoc> cmdVoc = new List<CmdVoc>();
+        readonly List<string> list0 = new List<string>();
+        readonly List<string> list1 = new List<string>();
+        readonly List<string> list2 = new List<string>();
+        readonly List<string> list3 = new List<string>();
+        readonly List<string> list4 = new List<string>();
+        readonly List<string> list5 = new List<string>();
+        readonly List<string> list6 = new List<string>();
+        readonly List<string> list7 = new List<string>();
+        readonly List<string> list8 = new List<string>();
+        readonly List<string> list9 = new List<string>();
         #endregion
 
         public MainWindow()
@@ -133,7 +133,7 @@ namespace Screenmate
 
             #region timer
             popupTimer = new DispatcherTimer();
-            popupTimer.Interval = TimeSpan.FromHours(1);
+            popupTimer.Interval = TimeSpan.FromMinutes(1);
             popupTimer.Tick += PopupTimer_Tick;
             popupTimer.Start();
 
@@ -445,7 +445,7 @@ namespace Screenmate
             DateTime currentTime = DateTime.Now;
             DateTime Tomorrow = currentTime.AddDays(+1);
 
-            string targetTime = "17:00";
+            string targetTime = Properties.Settings.Default.RappelT;
             string test = Tomorrow.ToString("d MMMM", CultureInfo.CreateSpecificCulture("fr-FR"));
             string test2 = currentTime.ToString("HH:mm");
 
@@ -561,7 +561,7 @@ namespace Screenmate
                 {
                     if (command.Contains(list8[i]))
                     {
-                        Option.param();
+                        Option.Param();
                         break;
                     }
                 }
